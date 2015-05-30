@@ -47,5 +47,13 @@
             "type": "registry",
             "id": "de.appplant.cordova.plugin.hidden-statusbar-overlay"
         }
+    },
+    "org.apache.cordova.geolocation": {
+        "source": {
+            "type": "registry",
+            "id": "org.apache.cordova.geolocation"
+        },
+        "is_top_level": true,
+        "variables": {}
     }
 }

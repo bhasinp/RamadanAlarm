@@ -48,6 +48,8 @@
 		BFCACD6AE0784CD29BD4C2B0 /* APPLocalNotificationOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 71BF914E0A7C48718A5086B1 /* APPLocalNotificationOptions.m */; };
 		4E0DAD5093C5484992CC54EE /* UIApplication+APPLocalNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = A292912C100746648A3ADA8B /* UIApplication+APPLocalNotification.m */; };
 		3AC3B970AEB548019922786E /* UILocalNotification+APPLocalNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = B2976E9AE24E40018E3B4566 /* UILocalNotification+APPLocalNotification.m */; };
+		29D727C0A980432BB53FA387 /* CDVLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = FDD3DE1E1BDA4DAFACE2A52D /* CDVLocation.m */; };
+		0B5C52E93F454963A92580F7 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 546348F662C5405E8772540C /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,6 +132,9 @@
 		5007893730064416AA59C411 /* APPLocalNotificationOptions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "APPLocalNotificationOptions.h"; path = "de.appplant.cordova.plugin.local-notification/APPLocalNotificationOptions.h"; sourceTree = "<group>"; fileEncoding = 4; };
 		F7F2C6419AE849A3838CCFA4 /* UIApplication+APPLocalNotification.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UIApplication+APPLocalNotification.h"; path = "de.appplant.cordova.plugin.local-notification/UIApplication+APPLocalNotification.h"; sourceTree = "<group>"; fileEncoding = 4; };
 		351BD93B3EEA41D890E29373 /* UILocalNotification+APPLocalNotification.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UILocalNotification+APPLocalNotification.h"; path = "de.appplant.cordova.plugin.local-notification/UILocalNotification+APPLocalNotification.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		FDD3DE1E1BDA4DAFACE2A52D /* CDVLocation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVLocation.m"; path = "org.apache.cordova.geolocation/CDVLocation.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		51D90BF0C81547D0A6EEBF66 /* CDVLocation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVLocation.h"; path = "org.apache.cordova.geolocation/CDVLocation.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		546348F662C5405E8772540C /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "CoreLocation.framework"; path = "System/Library/Frameworks/CoreLocation.framework"; sourceTree = SDKROOT; fileEncoding = 4; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +147,7 @@
 				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
 				305D5FD1115AB8F900A74A75 /* MobileCoreServices.framework in Frameworks */,
 				3FB2430716314EA98761A098 /* QuartzCore.framework in Frameworks */,
+				0B5C52E93F454963A92580F7 /* CoreLocation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -215,6 +221,7 @@
 				288765FC0DF74451002DB57D /* CoreGraphics.framework */,
 				305D5FD0115AB8F900A74A75 /* MobileCoreServices.framework */,
 				ADCFAC5CA45B49889AE92F89 /* QuartzCore.framework */,
+				546348F662C5405E8772540C /* CoreLocation.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -246,6 +253,8 @@
 				5007893730064416AA59C411 /* APPLocalNotificationOptions.h */,
 				F7F2C6419AE849A3838CCFA4 /* UIApplication+APPLocalNotification.h */,
 				351BD93B3EEA41D890E29373 /* UILocalNotification+APPLocalNotification.h */,
+				FDD3DE1E1BDA4DAFACE2A52D /* CDVLocation.m */,
+				51D90BF0C81547D0A6EEBF66 /* CDVLocation.h */,
 			);
 			name = Plugins;
 			path = "Ramadan Alarm/Plugins";
@@ -438,6 +447,7 @@
 				BFCACD6AE0784CD29BD4C2B0 /* APPLocalNotificationOptions.m in Sources */,
 				4E0DAD5093C5484992CC54EE /* UIApplication+APPLocalNotification.m in Sources */,
 				3AC3B970AEB548019922786E /* UILocalNotification+APPLocalNotification.m in Sources */,
+				29D727C0A980432BB53FA387 /* CDVLocation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

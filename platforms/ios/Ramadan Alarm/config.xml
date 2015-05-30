@@ -33,4 +33,7 @@
     </author>
     <content src="main.html" />
     <access origin="*" />
+    <feature name="Geolocation">
+        <param name="ios-package" value="CDVLocation" />
+    </feature>
 </widget>

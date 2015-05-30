@@ -4,7 +4,18 @@
         "uninstalled": []
     },
     "config_munge": {
-        "files": {}
+        "files": {
+            "package.appxmanifest": {
+                "parents": {
+                    "/Package/Capabilities": [
+                        {
+                            "xml": "<DeviceCapability Name=\"location\" />",
+                            "count": 1
+                        }
+                    ]
+                }
+            }
+        }
     },
     "installed_plugins": {
         "android.support.v4": {
@@ -17,6 +28,9 @@
             "PACKAGE_NAME": "NotificationExample"
         },
         "nl.x-services.plugins.toast": {
+            "PACKAGE_NAME": "NotificationExample"
+        },
+        "org.apache.cordova.geolocation": {
             "PACKAGE_NAME": "NotificationExample"
         }
     },
