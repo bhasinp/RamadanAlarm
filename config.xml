@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="de.appplant.localnotification.example" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Ramadan Alarm</name>
+    <description>
+       Ramadan Alarm application to remind you at the right time.
+    </description>
+    <author email="into@initto.ca" href="http://www.initto.ca">
+        Initto IT Consulting Inc.
+    </author>
+    <content src="main.html" />
+    <access origin="*" />
+</widget>
