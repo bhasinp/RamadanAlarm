@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> Monthly Prayer Timetable </title>
+	<link href="css/bootstrap.min.css" rel="stylesheet" />
+
+
+
+	<!-- Optional theme -->
+
+	<!-- <link href="css/bootstrap-theme-io8.css" rel="stylesheet" /> -->
+
+	<!-- Ramadan references -->
+	<link href="css/index.css" rel="stylesheet" />
+	<style>
+		body, tr, form {font-family: tahoma; font-size: 12px; color: #404040; text-align: center; margin: 0; padding: 0}
+		pre {font-family: courier, serif, size: 10pt; margin: 0px 8px;}
+		input {font-size: 12px;}
+		.header {background:#eef; border-bottom: 1px solid #ddd; padding: 7px;}
+		.caption {font-size: 20px; color: #d95722; text-align: center; width: 10em;}
+		.arrow {font-weight: bold; text-decoration: none; color: #3D3D3D; }
+		.arrow:hover {text-decoration: underline;}
+		.command {font-weight: bold; text-decoration: none; color: #AAAAAA; }
+		.command:hover {text-decoration: underline;}
+		.timetable {border-width: 1px; border-style: outset; border-collapse: collapse; border-color: gray; margin: 0 auto;}
+		.timetable td {border-width: 1px; border-spacing: 1px; padding: 1px; border-style: inset; border-color: #CCCCCC;}
+		.head-row {color: black; background-color: #eef;}
+		.today-row {background-color: #F8F7F4; color: black}
+		.subMenu {list-style: none;}
+	</style>
+</head>
+
+<body>
+
+	<script type="text/javascript" src="js/PrayTimes.js"></script>
+
+	<!-- Brand and toggle get grouped for better mobile display -->
+	<div class="navbar navbar-default" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header navbar-right">
+				<button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="sr-only">Toggle Navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<div class="navbar-brand navbar-right"><a href="default.html">Home</a></div>
+			</div>
+			<div class="collapse navbar-collapse">
+
+				<ul class="subMenu">
+					<li><a href="#">Load</a></li>
+					<li><a href="#">Restart</a></li>
+					<li class="divider"></li>
+					<li><a href="#">Logout</a></li>
+				</ul>
+
+
+			</div>
+		</div>
+		<div class="header">
+			<form class="form" action="javascript:update();">
+				<div class="container">
+					<div class="col-md-3 col-sm-6 col-xs-6">
+						<div class="col-md-6 col-sm-6 col-xs-6">Latitude:</div>
+						<div class="col-md-6 col-sm-6 col-xs-6">
+							<input type="text" value="43" id="latitude" size="2" onchange="update();" />
+						</div></div>
+						<div class="col-md-3 col-sm-6 col-xs-6">
+							<div class="col-md-6 col-sm-6 col-xs-6">Longitude:</div>
+							<div class="col-md-6 col-sm-6 col-xs-6">
+								<input type="text" value="-80" id="longitude" size="2" onchange="update();" />
+							</div>
+						</div>
+						<div class="col-md-3 col-sm-6 col-xs-6">
+							<div class="col-md-6 col-sm-6 col-xs-6">Time Zone:</div>
+							<div class="col-md-6 col-sm-6 col-xs-6">
+								<input type="text" value="-5" id="timezone" size="2" onchange="update();" />
+							</div>
+						</div>
+						<div class="col-md-3 col-sm-6 col-xs-6">
+							<div class="col-md-6 col-sm-6 col-xs-6">DST:</div>
+							<div class="col-md-6 col-sm-6 col-xs-6">
+
+								<select id="dst" size="1" style="font-size: 12px;" onchange="update()">
+									<option value="auto" selected="selected">Auto</option>
+									<option value="0">0</option>
+									<option value="1">1</option>
+								</select>
+							</div>
+						</div>
+					</div>
+
+					<div class="container">
+						<div class="col-md-12 col-sm-12 col-xs-12">
+						<div class="col-md-3 col-sm-3 col-xs-3">Method:</div>
+							<div class="col-md-9 col-sm-9 col-xs-9">
+
+								<select id="method" size="1" style="font-size: 12px;" onchange="update()">
+									<option value="MWL" selected="selected">Muslim World League (MWL)</option>
+									<option value="ISNA">Islamic Society of North America (ISNA)</option>
+									<option value="Egypt">Egyptian General Authority of Survey</option>
+									<option value="Makkah">Umm al-Qura University, Makkah</option>
+									<option value="Karachi">University of Islamic Sciences, Karachi</option>
+									<option value="Jafari">Shia Ithna-Ashari (Jafari)</option>
+									<option value="Tehran">Institute of Geophysics, University of Tehran</option>
+								</select>
+							</div>
+						</div>
+					</div>
+
+				</form>
+			</div>
+			<br/>
+			<table align="center">
+				<tr>
+					<td><a href="javascript:displayMonth(-1)" class="arrow">&lt;&lt;</a></td>
+					<td id="table-title" class="caption"></td>
+					<td><a href="javascript:displayMonth(+1)" class="arrow">&gt;&gt;</a></td>
+				</tr>
+			</table>
+
+			<br/>
+			<table id="timetable" class="timetable">
+				<tbody></tbody>
+			</table>
+
+			<div align="center" style="margin-top: 7px">
+				Source: <a href="http://praytimes.org/" class="command">PrayTimes.org</a> |
+				Time Format: <a id="time-format" href="javascript:switchFormat(1)" title="Change clock format" class="command"></a>
+			</div>
+			<br/>
+
+			
+
+<script src="js/jquery-1.11.3.min.js"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="js/bootstrap.js"></script>
+
+<script src="js/prayerMonth.js"></script>
+
+</body>
+</html>
+
+
+
