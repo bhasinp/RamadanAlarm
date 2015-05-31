@@ -87,7 +87,7 @@ var notification = {
 
 		var sound = device.platform == 'Android' ? 'file://sound.mp3' : 'file://beep.caf';
 
-		cordova.plugins.notification.local.schedule({
+		cordova.plugins.notification.local.schedule([{
 			id: 11,
 			title: 'Ramadan  Alarm',
 			text: 'Good Morning',
@@ -110,7 +110,7 @@ var notification = {
 			at: _30_sec_from_now,
 			sound: sound,
 			badge: 19
-		});
+		}]);
 	},
 
 
