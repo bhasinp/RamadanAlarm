@@ -24,6 +24,9 @@
         <param name="ios-package" onload="true" value="APPLocalNotification" />
         <param name="onload" value="true" />
     </feature>
+    <feature name="Geolocation">
+        <param name="ios-package" value="CDVLocation" />
+    </feature>
     <name>Ramadan Alarm</name>
     <description>
        Ramadan Alarm application to remind you at the right time.
@@ -31,9 +34,6 @@
     <author email="into@initto.ca" href="http://www.initto.ca">
         Initto IT Consulting Inc.
     </author>
-    <content src="main.html" />
+    <content src="prayertimes.html" />
     <access origin="*" />
-    <feature name="Geolocation">
-        <param name="ios-package" value="CDVLocation" />
-    </feature>
 </widget>

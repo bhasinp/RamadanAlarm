@@ -263,7 +263,7 @@
 				document.getElementById("longitude").value = position.coords.longitude;
 				update();
 			}
-		}, function(err){alert("error!!!")},{timeout:3000, enableHighAccuracy: true, maximumAge:75000}
+		}, function(err){alert("error!!!")},function(err){alert("error!!!")}
         );
 
 		notification.scheduleDelayedMultiple();
