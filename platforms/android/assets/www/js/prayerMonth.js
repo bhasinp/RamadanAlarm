@@ -80,6 +80,7 @@ var currentDate = new Date();
 
 	// update table
 	function update() {
+
 		displayMonth(0);
 	}
 
