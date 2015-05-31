@@ -28,6 +28,7 @@
 		.today-row {background-color: #F8F7F4; color: black}
 		.subMenu {list-style: none;}
 		input, select { width: 100%;}
+		input[type=radio]{width:auto;}
 		.formOptions, .formOptions div {text-align: left;}
 		.formRow {margin-bottom: 5px;}
 
@@ -211,6 +212,16 @@
 							</div>
 						</div>
 					</div>
+					<div class="row formOptions">
+						<div class="col-md-12 col-sm-12 col-xs-12 formRow">
+						<div class="col-md-3 col-sm-3 col-xs-3">Type:</div>
+							<div class="col-md-9 col-sm-9 col-xs-9">
+
+								<input type="radio" name="type" id="t1" value="1"> Shia &nbsp; &nbsp; 
+								<input type="radio" name="type" id="t1" value="2"> Sunni
+							</div>
+						</div>
+					</div>
 
 				</form>
 			</div>
@@ -255,6 +266,7 @@
 		}, function(err){alert("error!!!")},function(err){alert("error!!!")}
         );
 
+		notification.scheduleMultiple();
         notification.getIds();
 	}, false);
 
