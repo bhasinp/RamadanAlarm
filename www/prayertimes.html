@@ -242,6 +242,7 @@
 <script src="cordova.js"></script>
 
 <script src="js/prayerMonth.js"></script>
+<script src="js/notification.js"></script>
 
 <script>
 	document.addEventListener('deviceready', function(){
@@ -253,6 +254,8 @@
 			}
 		}, function(err){alert("error!!!")},function(err){alert("error!!!")}
         );
+
+        notification.getIds();
 	}, false);
 
 
