@@ -251,7 +251,7 @@
 				document.getElementById("longitude").value = position.coords.longitude;
 				update();
 			}
-		}
+		}, function(err){alert("error!!!")},function(err){alert("error!!!")}
         );
 	}, false);
 

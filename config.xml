@@ -11,5 +11,6 @@
     <access origin="*" />
     <feature name="Geolocation">
     	<param name="ios-package" value="CDVLocation" />
+        <param name="android-package" value="org.apache.cordova.geolocation.GeoBroker" />
 	</feature>
 </widget>
