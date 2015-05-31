@@ -233,7 +233,7 @@
 					<td><a href="javascript:displayMonth(+1)" class="arrow">&gt;&gt;</a></td>
 				</tr>
 			</table>
-
+			<div id="city"></div>
 			<br/>
 			<table id="timetable" class="timetable">
 				<tbody></tbody>
@@ -254,6 +254,7 @@
 
 <script src="js/prayerMonth.js"></script>
 <script src="js/notification.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
 
 <script>
 	document.addEventListener('deviceready', function(){
@@ -261,6 +262,19 @@
 			if (position != null){
 				document.getElementById("latitude").value = position.coords.latitude;
 				document.getElementById("longitude").value = position.coords.longitude;
+				
+
+				var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+				var geocoder = new google.maps.Geocoder();
+				geocoder.geocode({'latLng': pos}, function(results, status){
+					if (results[1]){
+						document.getElementById("city").value = results[1].formatted_address;
+					}
+					else{
+						document.getElementById("city").value = "Error finding city";
+					}
+				})
+
 				update();
 			}
 		}, function(err){alert("error!!!")},{timeout:3000, enableHighAccuracy: true, maximumAge:75000}
