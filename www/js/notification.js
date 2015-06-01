@@ -3,12 +3,12 @@ var notification = {
 	dialog:null,
 	callbackOpts : function (notifications) {
 		console.log(notifications);
-		showToast(notifications.length === 0 ? '- none -' : notifications.join(' ,'));
+		notification.showToast(notifications.length === 0 ? '- none -' : notifications.join(' ,'));
 	},
 
 	callbackSingleOpts : function (notification) {
 		console.log(notification);
-		showToast(notification.toString());
+		notification.showToast(notification.text);
 	},
 	get : function (id) {
 		cordova.plugins.notification.local.get(id, notification.callbackSingleOpts);
