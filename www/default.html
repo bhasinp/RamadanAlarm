@@ -270,11 +270,7 @@
 <script>
 function setalarm(){
 	//notification.showToast("hello there");
-	
-		cordova.plugins.notification.local.get(11,function (notifications) {
-		console.log(notifications);
-		showToast(notification.toString());
-	})
+	notification.getIds();
         //notification.getTriggered();
 }
 	document.addEventListener('deviceready', function(){
