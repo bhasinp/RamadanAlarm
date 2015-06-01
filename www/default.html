@@ -271,9 +271,9 @@
 function setalarm(){
 	//notification.showToast("hello there");
 	
-		cordova.plugins.notification.local.getAll(function (notifications) {
+		cordova.plugins.notification.local.get(11,function (notifications) {
 		console.log(notifications);
-		showToast(notifications.length === 0 ? '- none -' : notifications.join(' ,'));
+		showToast(notification.toString());
 	})
         //notification.getTriggered();
 }
