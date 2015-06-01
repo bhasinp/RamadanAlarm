@@ -230,7 +230,7 @@
 			</div>
 			<div class="row">
 				<div class="pull-right">
-					<a id="schedule" class="btn btn-success" href="#" onclick="setalarm()">Set Alarm</a>
+					<a id="schedule" class="btn btn-success" href="javascript:setalarm();">Set Alarm</a>
 				</div>
 			</div>
 			<br/>
@@ -271,7 +271,10 @@
 function setalarm(){
 	//notification.showToast("hello there");
 	
-		notification.getAll();
+		cordova.plugins.notification.local.getAll(function (notifications) {
+		console.log(notifications);
+		showToast(notifications.length === 0 ? '- none -' : notifications.join(' ,'));
+	})
         //notification.getTriggered();
 }
 	document.addEventListener('deviceready', function(){
