@@ -271,9 +271,7 @@
 function setalarm(){
 	//notification.showToast("hello there");
 	
-		notification.getAll(function(){
-			showToast(notifications.length === 0 ? '- none -' : notifications.join(' ,'));
-		});
+		notification.getAll();
         //notification.getTriggered();
 }
 	document.addEventListener('deviceready', function(){

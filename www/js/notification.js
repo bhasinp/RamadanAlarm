@@ -18,16 +18,16 @@ var notification = {
 		cordova.plugins.notification.local.get(ids, notification.callbackOpts);
 	},
 
-	getAll : function (callback) {
-		cordova.plugins.notification.local.getAll(callback != null ?callback:notification.callbackOpts);
+	getAll : function () {
+		cordova.plugins.notification.local.getAll(notification.callbackOpts);
 	},
 
-	getScheduled : function (callback) {
-		cordova.plugins.notification.local.getScheduled(callback!= null ?callback:notification.callbackOpts);
+	getScheduled : function () {
+		cordova.plugins.notification.local.getScheduled(notification.callbackOpts);
 	},
 
-	getTriggered : function (callback) {
-		cordova.plugins.notification.local.getTriggered(callback!= null ?callback:notification.callbackOpts);
+	getTriggered : function () {
+		cordova.plugins.notification.local.getTriggered(notification.callbackOpts);
 	},
 	callback : function () {
 		cordova.plugins.notification.local.getIds(function (ids) {
