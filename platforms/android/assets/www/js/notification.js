@@ -1,14 +1,14 @@
 var notification = {
 	id : 1,
 	dialog:null,
-	callbackOpts : function (notifications) {
-		console.log(notifications);
-		showToast(notifications.length === 0 ? '- none -' : notifications.join(' ,'));
+	callbackOpts : function (items) {
+		console.log(items);
+		notification.showToast(items.length === 0 ? '- none -' : items.join(' ,'));
 	},
 
-	callbackSingleOpts : function (notification) {
-		console.log(notification);
-		showToast(notification.toString());
+	callbackSingleOpts : function (item) {
+		console.log(item);
+		notification.showToast(item.data != null ?item.data : item.text);
 	},
 	get : function (id) {
 		cordova.plugins.notification.local.get(id, notification.callbackSingleOpts);
@@ -109,8 +109,9 @@ var notification = {
 
 	scheduleDelayedMultiple : function () {
 		var now = new Date().getTime(),
+		now2 = new Date('6/2/2015 03:00').getTime(),
 		_5_sec_from_now = new Date(now + 5 * 1000),
-		_10_sec_from_now = new Date(now + 10 * 1000),
+		_10_sec_from_now = now2,
 		_30_sec_from_now = new Date(now + 30 * 1000);
 
 		var sound = device.platform == 'Android' ? 'file://sound.mp3' : 'file://beep.caf';
@@ -121,7 +122,8 @@ var notification = {
 			text: 'Good Morning',
 			at: _5_sec_from_now,
 			sound: sound,
-			badge: 12
+			badge: 12,
+			data : '6/1/2015 5:00 PM'
 		},
 		{
 			id: 12,
@@ -129,7 +131,8 @@ var notification = {
 			text: 'Wake up now',
 			at: _10_sec_from_now,
 			sound: sound,
-			badge: 15
+			badge: 15,
+			data : '6/2/2015 3:00 PM'
 		},
 		{
 			id: 13,
@@ -137,7 +140,8 @@ var notification = {
 			text: 'OK, high time, wake up now or stay hungry all day.',
 			at: _30_sec_from_now,
 			sound: sound,
-			badge: 19
+			badge: 19,
+			data : '6/4/2015 5:00 PM'
 		}]);
 	},
 

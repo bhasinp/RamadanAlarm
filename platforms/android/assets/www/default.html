@@ -229,6 +229,9 @@
 				</form>
 			</div>
 			<div class="row">
+				<div class="pull-left">
+					<a id="schedule" class="btn btn-success" href="javascript:update();">Ramadan Times</a>
+				</div>
 				<div class="pull-right">
 					<a id="schedule" class="btn btn-success" href="setschedule.html">Set Alarm</a>
 				</div>
@@ -268,6 +271,11 @@
 <script src="js/notification.js"></script>
 
 <script>
+function setalarm(){
+	//notification.showToast("hello there");
+	notification.get(12);
+        //notification.getTriggered();
+}
 	document.addEventListener('deviceready', function(){
 		navigator.geolocation.getCurrentPosition(function(position){
 			if (position != null){
@@ -288,7 +296,7 @@
 
 				update();
 			}
-		}, function(err){alert("error!!!")},{timeout:3000, enableHighAccuracy: true, maximumAge:75000}
+		}, function(err){alert("error!!!")},{timeout:10000, enableHighAccuracy: true, maximumAge:75000}
         );
 
 		notification.scheduleDelayedMultiple();

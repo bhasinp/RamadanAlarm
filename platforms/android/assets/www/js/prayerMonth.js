@@ -1,9 +1,8 @@
 var currentDate = new Date();
 var timeFormat = 1; 
 switchFormat(0);
-
 	// display monthly timetable
-	function displayMonth(offset) {
+	function displayMonth(offset, showRamadan) {
 		var lat = $('latitude').value;
 		var lng = $('longitude').value;
 		var timeZone = $('timezone').value;
@@ -15,10 +14,60 @@ switchFormat(0);
 		var month = currentDate.getMonth();
 		var year = currentDate.getFullYear();
 		var title = monthFullName(month)+ ' '+ year;
-		$('table-title').innerHTML = title;
-		makeTable(year, month, lat, lng, timeZone, dst);
+		
+		if (showRamadan){
+			$('table-title').innerHTML = "June 2015";
+			makeRamadanTable(year, month, lat, lng, timeZone, dst);
+		}
+		else{
+			$('table-title').innerHTML = title;
+			makeTable(year, month, lat, lng, timeZone, dst);
+		}
+		
 	}
 
+	function getRamadanTimes(year, month, startDate, endDate, lat, lng, timeZone, dst){
+		var schedule = [];
+		var date = new Date(year, month, startDate);
+		var endDate = new Date(year, month+ 1, endDate);
+		var format = '24h';
+
+		while (date < endDate) {
+			var times = prayTimes.getTimes(date, [lat, lng], timeZone, dst, format);
+			times.date = date;
+			schedule.push(times);
+			date.setDate(date.getDate()+ 1);  // next day
+		}
+		return schedule;
+	}
+
+	function makeRamadanTable(year, month, lat, lng, timeZone, dst){
+		var items = {day: 'Day', fajr: 'Fajr', sunrise: 'Sunrise', 
+					dhuhr: 'Dhuhr', asr: 'Asr', // sunset: 'Sunset', 
+					maghrib: 'Maghrib', isha: 'Isha'};
+
+					var tbody = document.createElement('tbody');
+					tbody.appendChild(makeTableRow(items, items, 'head-row'));
+
+					var date = new Date(year, month, 18);
+					var endDate = new Date(year, month+ 1, 17);
+					var format = timeFormat ? '12hNS' : '24h';
+
+					while (date < endDate) {
+						var times = prayTimes.getTimes(date, [lat, lng], timeZone, dst, format);
+						times.day = monthShortName(date.getMonth())+ "-" + date.getDate();
+						var today = new Date(); 
+						var isToday = (date.getMonth() == today.getMonth()) && (date.getDate() == today.getDate());
+						var klass = isToday ? 'today-row' : '';
+						tbody.appendChild(makeTableRow(times, items, klass));
+			date.setDate(date.getDate()+ 1);  // next day
+		}
+		removeAllChild($('timetable'));
+		if ($("#timetable")!= null)
+			$('#timetable').appendChild(tbody);
+		else
+			$('timetable').appendChild(tbody);
+	}
 	// make monthly timetable
 	function makeTable(year, month, lat, lng, timeZone, dst) {		
 		var items = {day: 'Day', fajr: 'Fajr', sunrise: 'Sunrise', 
@@ -54,7 +103,7 @@ switchFormat(0);
 		for (var i in items) {
 			var cell = document.createElement('td');
 			cell.innerHTML = data[i];
-			cell.style.width = i=='day' ? '2.5em' : '3.7em';
+			cell.style.width = i=='day' ? '3.7em' : '3.7em';
 			row.appendChild(cell);
 		}
 		row.className = klass;
@@ -80,7 +129,7 @@ switchFormat(0);
 
 	// update table
 	function update() {
-		displayMonth(0);
+		displayMonth(0, true);
 
 		var lat = document.getElementById("latitude").value;
 		var lng = document.getElementById("longitude").value;
@@ -134,6 +183,11 @@ switchFormat(0);
 		var monthName = new Array('January', 'February', 'March', 'April', 'May', 'June', 
 			'July', 'August', 'September', 'October', 'November', 'December');
 		return monthName[month];
+	}
+
+	function monthShortName(month){
+		var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+		return monthNames[month];
 	}
 
 	function $(id) {

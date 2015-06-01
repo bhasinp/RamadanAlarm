@@ -9,10 +9,9 @@
     </author>
     <content src="default.html" />
     <access origin="*" />
-   
     <feature name="Geolocation">
         <param name="ios-package" value="CDVLocation" />
         <param name="android-package" value="org.apache.cordova.geolocation.GeoBroker" />
     </feature>
-    <engine name="android" spec="^4.0.0" />
+    <engine name="android" spec="^4.0.2" />
 </widget>
