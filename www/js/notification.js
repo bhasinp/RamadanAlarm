@@ -1,14 +1,14 @@
 var notification = {
 	id : 1,
 	dialog:null,
-	callbackOpts : function (notifications) {
-		console.log(notifications);
-		notification.showToast(notifications.length === 0 ? '- none -' : notifications.join(' ,'));
+	callbackOpts : function (items) {
+		console.log(items);
+		notification.showToast(items.length === 0 ? '- none -' : items.join(' ,'));
 	},
 
-	callbackSingleOpts : function (notification) {
-		console.log(notification);
-		notification.showToast(notification.text);
+	callbackSingleOpts : function (item) {
+		console.log(item);
+		notification.showToast(item.text);
 	},
 	get : function (id) {
 		cordova.plugins.notification.local.get(id, notification.callbackSingleOpts);
