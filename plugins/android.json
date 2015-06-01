@@ -93,6 +93,9 @@
         },
         "org.apache.cordova.geolocation": {
             "PACKAGE_NAME": "de.appplant.localnotification.example"
+        },
+        "de.appplant.cordova.common.registerusernotificationsettings": {
+            "PACKAGE_NAME": "de.appplant.localnotification.example"
         }
     },
     "dependent_plugins": {

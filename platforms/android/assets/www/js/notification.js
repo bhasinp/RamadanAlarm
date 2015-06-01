@@ -79,6 +79,41 @@ var notification = {
 		});
 	},
 
+	scheduleDelayedMultiple : function () {
+		var now = new Date().getTime(),
+		_5_sec_from_now = new Date(now + 5 * 1000),
+		_10_sec_from_now = new Date(now + 10 * 1000),
+		_30_sec_from_now = new Date(now + 30 * 1000);
+
+		var sound = device.platform == 'Android' ? 'file://sound.mp3' : 'file://beep.caf';
+
+		cordova.plugins.notification.local.schedule([{
+			id: 11,
+			title: 'Ramadan  Alarm',
+			text: 'Good Morning',
+			at: _5_sec_from_now,
+			sound: sound,
+			badge: 12
+		},
+		{
+			id: 12,
+			title: 'Ramadan  Alarm',
+			text: 'Wake up now',
+			at: _10_sec_from_now,
+			sound: sound,
+			badge: 15
+		},
+		{
+			id: 13,
+			title: 'Ramadan  Alarm',
+			text: 'OK, high time, wake up now or stay hungry all day.',
+			at: _30_sec_from_now,
+			sound: sound,
+			badge: 19
+		}]);
+	},
+
+
 	scheduleMinutely : function () {
 		var sound = device.platform == 'Android' ? 'file://sound.mp3' : 'file://beep.caf';
 

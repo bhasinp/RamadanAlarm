@@ -1,6 +1,6 @@
 var currentDate = new Date();
-				var timeFormat = 1; 
-				switchFormat(0);
+var timeFormat = 1; 
+switchFormat(0);
 
 	// display monthly timetable
 	function displayMonth(offset) {
@@ -80,9 +80,54 @@ var currentDate = new Date();
 
 	// update table
 	function update() {
-
 		displayMonth(0);
+
+		var lat = document.getElementById("latitude").value;
+		var lng = document.getElementById("longitude").value;
+
+		if (lat != undefined && lng != undefined){
+			var pos = new google.maps.LatLng(lat, lng);
+			var geocoder = new google.maps.Geocoder();
+			geocoder.geocode({'latLng': pos}, function(results, status){
+				if (results[1]){
+					document.getElementById("city").innerText = "City: " + results[1].formatted_address;
+				}
+				else{
+					document.getElementById("city").innerText = "Error finding city";
+				}
+			})
+		}
+		
 	}
+
+	function updateByZip(){
+		//http://maps.googleapis.com/maps/api/geocode/json?address=l9t7t9
+		var zipcode = document.getElementById("zip").value;
+		if (zipcode.length == 6){
+			zipcode = zipcode.substr(0,3) + " " +zipcode.substr(3,3);
+			zipcode = zipcode.toUpperCase();
+			document.getElementById("zip").value = zipcode;
+		}
+		if (checkPostal(zipcode)){
+			var geocoder = new google.maps.Geocoder();
+			geocoder.geocode({'address':zipcode}, function(results, status){
+				if (results.length > 0 && results[0].geometry != null){
+					document.getElementById("latitude").value = results[0].geometry.location.A;
+					document.getElementById("longitude").value = results[0].geometry.location.F;
+					update();
+				}
+			});
+		}
+		
+		
+	}
+
+	function checkPostal(postal) {
+    var regex = new RegExp(/^[ABCEGHJKLMNPRSTVXY]\d[ABCEGHJKLMNPRSTVWXYZ]( )?\d[ABCEGHJKLMNPRSTVWXYZ]\d$/i);
+    if (regex.test(postal))
+        return true;
+    else return false;
+}
 
 	// return month full name
 	function monthFullName(month) {
