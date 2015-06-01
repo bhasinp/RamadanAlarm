@@ -1,6 +1,34 @@
 var notification = {
 	id : 1,
 	dialog:null,
+	var callbackOpts : function (notifications) {
+		console.log(notifications);
+		showToast(notifications.length === 0 ? '- none -' : notifications.join(' ,'));
+	},
+
+	callbackSingleOpts : function (notification) {
+		console.log(notification);
+		showToast(notification.toString());
+	},
+	get : function (id) {
+		cordova.plugins.notification.local.get(id, notification.callbackSingleOpts);
+	},
+
+	getMultiple : function (ids) {
+		cordova.plugins.notification.local.get(ids, notification.callbackOpts);
+	},
+
+	getAll : function () {
+		cordova.plugins.notification.local.getAll(notification.callbackOpts);
+	},
+
+	getScheduled : function () {
+		cordova.plugins.notification.local.getScheduled(notification.callbackOpts);
+	},
+
+	getTriggered : function () {
+		cordova.plugins.notification.local.getTriggered(notification.callbackOpts);
+	},
 	callback : function () {
 		cordova.plugins.notification.local.getIds(function (ids) {
 			notification.showToast('IDs: ' + ids.join(' ,'));
