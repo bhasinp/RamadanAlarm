@@ -1,7 +1,7 @@
 var notification = {
 	id : 1,
 	dialog:null,
-	var callbackOpts : function (notifications) {
+	callbackOpts : function (notifications) {
 		console.log(notifications);
 		showToast(notifications.length === 0 ? '- none -' : notifications.join(' ,'));
 	},

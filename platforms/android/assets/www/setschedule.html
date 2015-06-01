@@ -87,30 +87,8 @@
 
 <script>
 	document.addEventListener('deviceready', function(){
-		navigator.geolocation.getCurrentPosition(function(position){
-			if (position != null){
-				document.getElementById("latitude").value = position.coords.latitude;
-				document.getElementById("longitude").value = position.coords.longitude;
-				
-
-				// var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-				// var geocoder = new google.maps.Geocoder();
-				// geocoder.geocode({'latLng': pos}, function(results, status){
-				// 	if (results[1]){
-				// 		document.getElementById("city").innerText = "City: " + results[1].formatted_address;
-				// 	}
-				// 	else{
-				// 		document.getElementById("city").innerText = "Error finding city";
-				// 	}
-				// })
-
-				update();
-			}
-		}, function(err){alert("error!!!")},{timeout:3000, enableHighAccuracy: true, maximumAge:75000}
-        );
-
-		notification.scheduleDelayedMultiple();
-        notification.getIds();
+		notification.get(11);
+        notification.getTriggered();
 	}, false);
 
 
