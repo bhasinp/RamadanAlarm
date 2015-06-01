@@ -18,12 +18,12 @@ var notification = {
 		cordova.plugins.notification.local.get(ids, notification.callbackOpts);
 	},
 
-	getAll : function () {
-		cordova.plugins.notification.local.getAll(notification.callbackOpts);
+	getAll : function (callback) {
+		cordova.plugins.notification.local.getAll(callback?callback:notification.callbackOpts);
 	},
 
-	getScheduled : function () {
-		cordova.plugins.notification.local.getScheduled(notification.callbackOpts);
+	getScheduled : function (callback) {
+		cordova.plugins.notification.local.getScheduled(callback?callback:notification.callbackOpts);
 	},
 
 	getTriggered : function () {
