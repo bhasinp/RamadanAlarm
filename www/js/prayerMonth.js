@@ -187,7 +187,7 @@ switchFormat(0);
 
 	function checkZipCode(zip){
 		var regex = new RegExp (/^\d{5}$/i);
-		if (regex.text(zip))
+		if (regex.test(zip))
 			return true;
 		else
 			return false;
