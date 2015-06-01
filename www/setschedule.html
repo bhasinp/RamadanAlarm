@@ -86,8 +86,10 @@
 <script src="js/notification.js"></script>
 
 <script>
-	notification.getAll();
-    notification.getTriggered();
+	document.addEventListener('deviceready', function(){
+		notification.getAll();
+        notification.getTriggered();
+	}, false);
 
 
 </script>
