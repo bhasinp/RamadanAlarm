@@ -16,9 +16,38 @@ switchFormat(0);
 		var year = currentDate.getFullYear();
 		var title = monthFullName(month)+ ' '+ year;
 		$('table-title').innerHTML = title;
-		makeTable(year, month, lat, lng, timeZone, dst);
+		//makeTable(year, month, lat, lng, timeZone, dst);
+		makeRamadanTable(year, month, lat, lng, timeZone, dst);
 	}
 
+
+	function makeRamadanTable(year, month, lat, lng, timeZone, dst){
+		var items = {day: 'Day', fajr: 'Fajr', sunrise: 'Sunrise', 
+					dhuhr: 'Dhuhr', asr: 'Asr', // sunset: 'Sunset', 
+					maghrib: 'Maghrib', isha: 'Isha'};
+
+					var tbody = document.createElement('tbody');
+					tbody.appendChild(makeTableRow(items, items, 'head-row'));
+
+					var date = new Date(year, month, 18);
+					var endDate = new Date(year, month+ 1, 17);
+					var format = timeFormat ? '12hNS' : '24h';
+
+					while (date < endDate) {
+						var times = prayTimes.getTimes(date, [lat, lng], timeZone, dst, format);
+						times.day = date.getDate();
+						var today = new Date(); 
+						var isToday = (date.getMonth() == today.getMonth()) && (date.getDate() == today.getDate());
+						var klass = isToday ? 'today-row' : '';
+						tbody.appendChild(makeTableRow(times, items, klass));
+			date.setDate(date.getDate()+ 1);  // next day
+		}
+		removeAllChild($('timetable'));
+		if ($("#timetable")!= null)
+			$('#timetable').appendChild(tbody);
+		else
+			$('timetable').appendChild(tbody);
+	}
 	// make monthly timetable
 	function makeTable(year, month, lat, lng, timeZone, dst) {		
 		var items = {day: 'Day', fajr: 'Fajr', sunrise: 'Sunrise', 
