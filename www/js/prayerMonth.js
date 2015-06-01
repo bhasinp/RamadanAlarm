@@ -152,31 +152,46 @@ switchFormat(0);
 	function updateByZip(){
 		//http://maps.googleapis.com/maps/api/geocode/json?address=l9t7t9
 		var zipcode = document.getElementById("zip").value;
+		if (zipcode.length == 5 && checkZipCode(zipcode)){
+			updateGeocode(zipcode);
+		}
 		if (zipcode.length == 6){
 			zipcode = zipcode.substr(0,3) + " " +zipcode.substr(3,3);
 			zipcode = zipcode.toUpperCase();
 			document.getElementById("zip").value = zipcode;
+
+			if (checkPostal(zipcode))
+				updateGeocode(zipcode);
+			
 		}
-		if (checkPostal(zipcode)){
-			var geocoder = new google.maps.Geocoder();
-			geocoder.geocode({'address':zipcode}, function(results, status){
-				if (results.length > 0 && results[0].geometry != null){
-					document.getElementById("latitude").value = results[0].geometry.location.A;
-					document.getElementById("longitude").value = results[0].geometry.location.F;
-					update();
-				}
-			});
-		}
-		
 		
 	}
 
+	function updateGeocode(zipcode){
+		var geocoder = new google.maps.Geocoder();
+				geocoder.geocode({'address':zipcode}, function(results, status){
+					if (results.length > 0 && results[0].geometry != null){
+						document.getElementById("latitude").value = results[0].geometry.location.A;
+						document.getElementById("longitude").value = results[0].geometry.location.F;
+						update();
+					}
+				});
+	}
+
 	function checkPostal(postal) {
-    var regex = new RegExp(/^[ABCEGHJKLMNPRSTVXY]\d[ABCEGHJKLMNPRSTVWXYZ]( )?\d[ABCEGHJKLMNPRSTVWXYZ]\d$/i);
-    if (regex.test(postal))
-        return true;
-    else return false;
-}
+		var regex = new RegExp(/^[ABCEGHJKLMNPRSTVXY]\d[ABCEGHJKLMNPRSTVWXYZ]( )?\d[ABCEGHJKLMNPRSTVWXYZ]\d$/i);
+		if (regex.test(postal))
+			return true;
+		else return false;
+	}
+
+	function checkZipCode(zip){
+		var regex = new RegExp (/^\d{5}$/i);
+		if (regex.text(zip))
+			return true;
+		else
+			return false;
+	}
 
 	// return month full name
 	function monthFullName(month) {
