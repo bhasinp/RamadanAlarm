@@ -188,7 +188,6 @@ var oClockDigital = {
 };
 
 $(document).ready(function() {
-    bDOMLoaded = true;
     ClockInit();
 });
 

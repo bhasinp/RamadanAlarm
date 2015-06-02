@@ -8,36 +8,13 @@
 
 	<!-- Optional theme -->
 
-	<!-- <link href="css/bootstrap-theme-io8.css" rel="stylesheet" /> -->
+	<link href="css/bootstrap-theme-ios8.css" rel="stylesheet" />
 
 	<!-- Ramadan references -->
 	<link href="css/index.css" rel="stylesheet" />
 	<style>
-		body, tr, form {font-family: tahoma; font-size: 12px; color: #404040; text-align: center;}
-		pre {font-family: courier, serif, size: 10pt; margin: 0px 8px;}
-		input {font-size: 12px;}
-		.header {background:#eef; border-bottom: 1px solid #ddd; padding: 7px;}
-		.caption {font-size: 20px; color: #d95722; text-align: center; width: 10em;}
-		.arrow {font-weight: bold; text-decoration: none; color: #3D3D3D; }
-		.arrow:hover {text-decoration: underline;}
-		.command {font-weight: bold; text-decoration: none; color: #AAAAAA; }
-		.command:hover {text-decoration: underline;}
-		.timetable {border-width: 1px; border-style: outset; border-collapse: collapse; border-color: gray; margin: 0 auto;}
-		.timetable td {border-width: 1px; border-spacing: 1px; padding: 1px; border-style: inset; border-color: #CCCCCC;}
-		.head-row {color: black; background-color: #eef;}
-		.today-row {background-color: #F8F7F4; color: black}
-		.subMenu {list-style: none;}
-		input, select { width: 100%;}
-		input[type=radio]{width:auto;}
-		.formOptions, .formOptions div {text-align: left;}
-		.formRow {margin-bottom: 5px;}
 
-		.col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 {
-  position: relative;
-  min-height: 1px;
-  padding-right: 5px;
-  padding-left: 5px;
-}
+
 	</style>
 </head>
 
@@ -48,53 +25,26 @@
 	<!-- Brand and toggle get grouped for better mobile display -->
 	<div class="navbar navbar-default navbar-fixed-top" role="navigation">
 		<div class="container-fluid">
-			<div class="navbar-header navbar-right">
-				<button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-					<span class="sr-only">Toggle Navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<div class="navbar-brand navbar-right"><a href="default.html">Home</a></div>
-			</div>
-			<div class="collapse navbar-collapse">
-
-				<ul class="subMenu">
-					<li><a href="#">Alarm</a></li>
-					<li><a href="#">Monthly Calendar</a></li>
-					<li class="divider"> </li>
-					<li><a href="#">Community Newsletter</a></li>
-				</ul>
-
-
+			<div class="navbar-header ">
+				<div class="navbar-brand pull-left"><a href="javascript:saveAndBack();">Back</a></div>
+				<div class="navbar-brand pull-right"><a href="settings.html"></a></div>
 			</div>
 		</div>
-		</div>
+	</div>
 		<div class="header contentBody">
 			<form class="form" action="javascript:update();">
-				<div class="row formOptions">
-					<div class="col-md-3 col-sm-6 col-xs-6 formRow">
-						<div class="col-md-6 col-sm-6 col-xs-6">Latitude:</div>
-						<div class="col-md-6 col-sm-6 col-xs-6">
-							<input type="text" value="" id="latitude" size="2" onchange="update();" />
-						</div></div>
-						<div class="col-md-3 col-sm-6 col-xs-6 formRow">
-							<div class="col-md-6 col-sm-6 col-xs-6">Longitude:</div>
+				
+				<div class="row">
+					<div class="col-md-3 col-sm-6 col-xs-6">
+							<div class="col-md-6 col-sm-6 col-xs-6 formLabel">Postal:</div>
 							<div class="col-md-6 col-sm-6 col-xs-6">
-								<input type="text" value="" id="longitude" size="2" onchange="update();" />
-							</div>
-						</div>
-						
-						<div class="col-md-3 col-sm-6 col-xs-6">
-							<div class="col-md-6 col-sm-6 col-xs-6">Postal Code:</div>
-							<div class="col-md-6 col-sm-6 col-xs-6">
-								<input type="text" id="zip" onchange="updateByZip()"/>
+								<input type="text" id="zip" onchange="updateByZip()"/> <a href="javascript:getLocation();">&lt;</a>
 							</div>
 						</div>
 
 
 						<div class="col-md-3 col-sm-6 col-xs-6 formRow">
-							<div class="col-md-6 col-sm-6 col-xs-6">DST:</div>
+							<div class="col-md-6 col-sm-6 col-xs-6 formLabel">DST:</div>
 							<div class="col-md-6 col-sm-6 col-xs-6">
 
 								<select id="dst" size="1" style="font-size: 12px;" onchange="update()">
@@ -104,11 +54,24 @@
 								</select>
 							</div>
 						</div>
+				</div>
+				<div class="row formOptions">
+					<div class="col-md-3 col-sm-6 col-xs-6 formRow">
+						<div class="col-md-6 col-sm-6 col-xs-6 formLabel">Latitude:</div>
+						<div class="col-md-6 col-sm-6 col-xs-6">
+							<input type="text" value="" id="latitude" size="2" onchange="update();" />
+						</div></div>
+						<div class="col-md-3 col-sm-6 col-xs-6 formRow">
+							<div class="col-md-6 col-sm-6 col-xs-6 formLabel">Longitude:</div>
+							<div class="col-md-6 col-sm-6 col-xs-6">
+								<input type="text" value="" id="longitude" size="2" onchange="update();" />
+							</div>
+						</div>
 						
-					</div>
+				</div>
 					<div class="row formOptions">
 						<div class="col-md-12 col-sm-12 col-xs-12 formRow">
-						<div class="col-md-3 col-sm-3 col-xs-3">Time zone:</div>
+						<div class="col-md-3 col-sm-3 col-xs-3 formLabel">Time zone:</div>
 							<div class="col-md-9 col-sm-9 col-xs-9">
 
 								<select id="timezone" onchange="update();">
@@ -125,8 +88,9 @@
 									<option timeZoneId="11" gmtAdjustment="GMT-06:00" useDaylightTime="1" value="-6">(GMT-06:00) Central Time (US & Canada)</option>
 									<option timeZoneId="12" gmtAdjustment="GMT-06:00" useDaylightTime="1" value="-6">(GMT-06:00) Guadalajara, Mexico City, Monterrey</option>
 									<option timeZoneId="13" gmtAdjustment="GMT-06:00" useDaylightTime="0" value="-6">(GMT-06:00) Saskatchewan</option>
-									<option timeZoneId="14" gmtAdjustment="GMT-05:00" useDaylightTime="0" value="-5">(GMT-05:00) Bogota, Lima, Quito, Rio Branco</option>
-									<option timeZoneId="15" gmtAdjustment="GMT-05:00" useDaylightTime="1" value="-5" selected>(GMT-05:00) Eastern Time (US & Canada)</option>
+									<option timeZoneId="14" gmtAdjustment="GMT-05:00" useDaylightTime="1" value="-5" selected>(GMT-05:00) Eastern Time (US & Canada)</option>
+									<option timeZoneId="15" gmtAdjustment="GMT-05:00" useDaylightTime="0" value="-5">(GMT-05:00) Bogota, Lima, Quito, Rio Branco</option>
+									
 									<option timeZoneId="16" gmtAdjustment="GMT-05:00" useDaylightTime="1" value="-5">(GMT-05:00) Indiana (East)</option>
 									<option timeZoneId="17" gmtAdjustment="GMT-04:00" useDaylightTime="1" value="-4">(GMT-04:00) Atlantic Time (Canada)</option>
 									<option timeZoneId="18" gmtAdjustment="GMT-04:00" useDaylightTime="0" value="-4">(GMT-04:00) Caracas, La Paz</option>
@@ -200,10 +164,10 @@
 					</div>
 					<div class="row formOptions">
 						<div class="col-md-12 col-sm-12 col-xs-12 formRow">
-						<div class="col-md-3 col-sm-3 col-xs-3">Method:</div>
+						<div class="col-md-3 col-sm-3 col-xs-3 formLabel">Method:</div>
 							<div class="col-md-9 col-sm-9 col-xs-9">
 
-								<select id="method" size="1" style="font-size: 12px;" onchange="update()">
+								<select id="method" size="1" onchange="update()">
 									<option value="MWL" selected="selected">Muslim World League (MWL)</option>
 									<option value="ISNA">Islamic Society of North America (ISNA)</option>
 									<option value="Egypt">Egyptian General Authority of Survey</option>
@@ -217,7 +181,7 @@
 					</div>
 					<div class="row formOptions">
 						<div class="col-md-12 col-sm-12 col-xs-12 formRow">
-						<div class="col-md-3 col-sm-3 col-xs-3">Type:</div>
+						<div class="col-md-3 col-sm-3 col-xs-3 formLabel">Type:</div>
 							<div class="col-md-9 col-sm-9 col-xs-9">
 
 								<input type="radio" name="type" id="t1" value="1" onchange="update()"> Shia &nbsp; &nbsp; 
@@ -233,7 +197,8 @@
 					<a id="schedule" class="btn btn-success" href="javascript:update();">Ramadan Times</a>
 				</div>
 				<div class="pull-right">
-					<a id="schedule" class="btn btn-success" href="setschedule.html">Set Alarm</a>
+					<!-- <a id="schedule" class="btn btn-success" href="setschedule.html">Set Alarm</a> -->
+					<a id="schedule" class="btn btn-success" href="javascript:saveSettings();">Save</a>
 				</div>
 			</div>
 			<br/>
@@ -271,13 +236,20 @@
 <script src="js/notification.js"></script>
 
 <script>
+
+function saveAndBack(){
+	saveSettings();
+	window.location.href="default.html";
+
+}
 function setalarm(){
 	//notification.showToast("hello there");
 	notification.get(12);
         //notification.getTriggered();
 }
-	document.addEventListener('deviceready', function(){
-		navigator.geolocation.getCurrentPosition(function(position){
+
+function getLocation(){
+	navigator.geolocation.getCurrentPosition(function(position){
 			if (position != null){
 				document.getElementById("latitude").value = position.coords.latitude;
 				document.getElementById("longitude").value = position.coords.longitude;
@@ -299,8 +271,13 @@ function setalarm(){
 		}, function(err){alert("error!!!")},{timeout:10000, enableHighAccuracy: true, maximumAge:75000}
         );
 
-		notification.scheduleDelayedMultiple();
-        notification.getIds();
+}
+	document.addEventListener('deviceready', function(){
+		fetchSettings();
+		getLocation();
+
+		// notification.scheduleDelayedMultiple();
+  //       notification.getIds();
 	}, false);
 
 

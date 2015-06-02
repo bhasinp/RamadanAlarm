@@ -15,7 +15,7 @@
 	<!-- Ramadan references -->
 	<link href="css/index.css" rel="stylesheet" />
 	<style>
-		body, tr, form {font-family: tahoma; font-size: 12px; color: #404040; text-align: center;}
+		body, tr, form {font-family: tahoma; font-size: 12px; color: #fff; background-color: #012345; text-align: center;}
 		pre {font-family: courier, serif, size: 10pt; margin: 0px 8px;}
 		input {font-size: 12px;}
 		.header {background:#eef; border-bottom: 1px solid #ddd; padding: 7px;}
@@ -40,6 +40,10 @@
   padding-right: 5px;
   padding-left: 5px;
 }
+
+
+
+
 	</style>
 		
 </head>
@@ -49,7 +53,7 @@
 	
 
 	<!-- Brand and toggle get grouped for better mobile display -->
-	<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+<!-- 	<div class="navbar navbar-default navbar-fixed-top" role="navigation">
 		<div class="container-fluid">
 			<div class="navbar-header navbar-right">
 				<button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -72,22 +76,43 @@
 
 			</div>
 		</div>
+	</div> -->
+
+	<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header ">
+				<div class="navbar-brand pull-left"><a href="default.html"></a></div>
+				<div class="navbar-brand pull-right"><a href="settings.html">Setting</a></div>
+			</div>
+		</div>
+	</div>
+		<div class="row">
+			<div class="col-md-12 col-sm-12 col-xs-12  timeMain">
+				Tuesday 2 June, 2015
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12 col-sm-12 col-xs-12 clockMain">
+				<div id="cssclock"><div id="clockanalog" style="display:none;"><img src="img/analogseconds.png" id="analogsecond" alt="Clock second-hand" /><img src="img/analogminutes.png" id="analogminute" alt="Clock minute-hand" /><img src="img/analoghours.png" id="analoghour"  alt="Clock hour-hand" /></div>
+			</div>
 		</div>
 
 		<div class="row">
-			<div class="col-md-12 col-sm-12 col-xs-12">
-				<div id="cssclock"><div id="clockanalog" style="display:none;"><img src="img/analogseconds.png" id="analogsecond" alt="Clock second-hand" /><img src="img/analogminutes.png" id="analogminute" alt="Clock minute-hand" /><img src="img/analoghours.png" id="analoghour"  alt="Clock hour-hand" /></div>
-			</div>
+			<div class="pull-left sahoorTime">Sahoor: <br></div>
+			<div class="pull-right iftarTime">Iftar: <br></div>
 		</div>
 		
 			
 
-<script src="js/jquery-1.11.3.min.js"></script>
 <!-- Latest compiled and minified JavaScript -->
-<script src="js/bootstrap.js"></script>
 <script src="cordova.js"></script>
+
+<script src="js/jquery-1.11.3.min.js"></script>
+<script src="js/bootstrap.js"></script>
+
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
 <script type="text/javascript" src="js/clock.js"></script>
+<script type="text/javascript" src="js/PrayTimes.js"></script>
 <script src="js/prayerMonth.js"></script>
 <script src="js/notification.js"></script>
 
@@ -95,6 +120,21 @@
 	document.addEventListener('deviceready', function(){
 		bDOMLoaded = true;
     	ClockInit();
+
+    	var _lat = window.localStorage.getItem("latitude");
+		var _lng = window.localStorage.getItem("longitude");
+		var _zip = window.localStorage.getItem("zip");
+		var _dst = window.localStorage.getItem("dst");
+		var _timezone = window.localStorage.getItem("timezone");
+		var _method = window.localStorage.getItem("method");
+		var _type = window.localStorage.getItem("type");
+		var _format = '12hNS';//'24h'
+
+		var times = prayTimes.getTimes(new Date(), [_lat, _lng], _timezone, _dst, _format);
+		console.log(times);
+		$('.sahoorTime').html("Sahoor: <br>" + times.fajr + " AM");
+		$('.iftarTime').html("Iftar: <br>" + times.maghrib + " PM");
+
 	}, false);
 
 
