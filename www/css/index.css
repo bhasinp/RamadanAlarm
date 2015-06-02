@@ -190,6 +190,11 @@ body, tr, form {font-family: tahoma; font-size: 12px; color: #404040; text-align
     width:80%;
 }
 
+.stime, .itime{
+    background-color:#000;
+    padding:5px;
+    border-radius: 5px;
+}
 
 
 

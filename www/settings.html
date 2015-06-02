@@ -27,7 +27,7 @@
 		<div class="container-fluid">
 			<div class="navbar-header ">
 				<div class="navbar-brand pull-left"><a href="javascript:saveAndBack();">Back</a></div>
-				<div class="navbar-brand pull-right"><a href="settings.html"></a></div>
+				<div class="navbar-brand pull-right"><a href="javascript:saveAndCalendar();">Ramdan Calendar</a></div>
 			</div>
 		</div>
 	</div>
@@ -192,16 +192,16 @@
 
 				</form>
 			</div>
-			<div class="row">
+			<!-- <div class="row">
 				<div class="pull-left">
-					<a id="schedule" class="btn btn-success" href="javascript:update();">Ramadan Times</a>
+					<a id="schedule" class="btn btn-success" href="calendar.html">Ramadan calendar</a>
 				</div>
 				<div class="pull-right">
-					<!-- <a id="schedule" class="btn btn-success" href="setschedule.html">Set Alarm</a> -->
+					<a id="schedule" class="btn btn-success" href="setschedule.html">Set Alarm</a>
 					<a id="schedule" class="btn btn-success" href="javascript:saveSettings();">Save</a>
 				</div>
-			</div>
-			<br/>
+			</div>-->
+			<br/> 
 			<div id="city">City:</div>
 
 			<br/>
@@ -242,6 +242,14 @@ function saveAndBack(){
 	window.location.href="default.html";
 
 }
+
+function saveAndCalendar(){
+	saveSettings();
+	window.location.href="calendar.html";
+
+}
+
+
 function setalarm(){
 	//notification.showToast("hello there");
 	notification.get(12);
@@ -266,7 +274,7 @@ function getLocation(){
 				// 	}
 				// })
 
-				update();
+				update(false, false);
 			}
 		}, function(err){alert("error!!!")},{timeout:10000, enableHighAccuracy: true, maximumAge:75000}
         );

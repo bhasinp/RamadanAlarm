@@ -88,7 +88,7 @@
 	</div>
 		<div class="row">
 			<div class="col-md-12 col-sm-12 col-xs-12  timeMain">
-				Tuesday 2 June, 2015
+				
 			</div>
 		</div>
 		<div class="row">
@@ -98,8 +98,17 @@
 		</div>
 
 		<div class="row">
-			<div class="pull-left sahoorTime">Sahoor: <br></div>
-			<div class="pull-right iftarTime">Iftar: <br></div>
+			<div class="pull-left sahoorTime">Sahoor<br><div class="stime"></div> </div>
+			<div class="pull-right iftarTime">Iftar<br><div class="itime"></div></div>
+		</div>
+		<div class="row">
+			<div class="col-md-12 col-sm-12 col-xs-12" style="text-align:center;">
+				<span style="font-size:12pt;">HomeLife/Miracle Realty Ltd. Brokerage</span><br>
+				<strong>Syed Mehdi</strong><br>
+				<a href="www.gtaproperty4sale.com">www.gtaproperty4sale.com</a><br>
+				<a href="mailto:cozyhomes123@gmail.com">cozyhomes123@gmail.com</a><br>
+				<a href="tel:647-232-5544">647-232-5544</a>
+			</div>	
 		</div>
 		
 			
@@ -129,11 +138,15 @@
 		var _method = window.localStorage.getItem("method");
 		var _type = window.localStorage.getItem("type");
 		var _format = '12hNS';//'24h'
-
+		var prayTimes = new PrayTimes(_method);
 		var times = prayTimes.getTimes(new Date(), [_lat, _lng], _timezone, _dst, _format);
 		console.log(times);
-		$('.sahoorTime').html("Sahoor: <br>" + times.fajr + " AM");
-		$('.iftarTime').html("Iftar: <br>" + times.maghrib + " PM");
+		$(".timeMain").text(new Date().toLocaleDateString("en-US",{
+								    weekday: "long", year: "numeric", month: "short",
+								    day: "numeric"
+								}));
+		$('.stime').html(times.fajr + " AM");
+		$('.itime').html(times.maghrib + " PM");
 
 	}, false);
 

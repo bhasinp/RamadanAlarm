@@ -79,6 +79,34 @@ function fetchSettings()
 		
 	}
 
+	// display monthly timetable
+	function displayMonthSettings(offset, showRamadan) {
+		var lat = window.localStorage.getItem("latitude");
+		var lng = window.localStorage.getItem("longitude");
+		
+		var dst = window.localStorage.getItem("dst");
+		var timeZone = window.localStorage.getItem("timezone");
+		var method = window.localStorage.getItem("method");
+		var _type = window.localStorage.getItem("type");
+		
+
+		prayTimes.setMethod(method);
+		currentDate.setMonth(currentDate.getMonth()+ 1* offset);
+		var month = currentDate.getMonth();
+		var year = currentDate.getFullYear();
+		var title = monthFullName(month)+ ' '+ year;
+		
+		if (showRamadan){
+			$('#table-title').html("June-July 2015");
+			makeRamadanTable(year, 5, lat, lng, timeZone, dst);
+		}
+		else{
+			$('#table-title').html(title);
+			makeTable(year, month, lat, lng, timeZone, dst);
+		}
+		
+	}
+
 	function getRamadanTimes(year, month, startDate, endDate, lat, lng, timeZone, dst){
 		var schedule = [];
 		var date = new Date(year, month, startDate);
@@ -182,11 +210,25 @@ function fetchSettings()
 	}
 
 	// update table
-	function update() {
-		displayMonth(0, true);
+	function update(ramadan, setting) {
 
-		var lat = document.getElementById("latitude").value;
-		var lng = document.getElementById("longitude").value;
+		var lat = window.localStorage.getItem("latitude");
+		var lng = window.localStorage.getItem("longitude");
+		var _method = window.localStorage.getItem("method");
+
+		if (_method != null)
+			prayTimes = new PrayTimes(_method);
+
+
+		if (setting)
+			displayMonthSettings(0, ramadan);
+		else{
+			displayMonth(0, ramadan);
+			lat = document.getElementById("latitude").value;
+			lng = document.getElementById("longitude").value;
+		}
+
+		
 
 		if (lat != undefined && lng != undefined){
 			var pos = new google.maps.LatLng(lat, lng);
