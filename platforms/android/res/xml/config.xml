@@ -17,6 +17,6 @@
     <author email="into@initto.ca" href="http://www.initto.ca">
         Initto IT Consulting Inc.
     </author>
-    <content src="main.html" />
+    <content src="index.html" />
     <access origin="*" />
 </widget>
