@@ -141,7 +141,7 @@ input {
   border: 1px solid #ccc;
   border-radius: 2px;
   font-weight: 300;
-  padding: 8px 12px;
+  padding: 5px 7px;
 }
 input.search {
   padding-left: 75px;
@@ -191,9 +191,8 @@ input.search.s3:focus {
   margin-top: 1px;
 }
 .row {
-  height: 38px;
-  padding: 20px 30px;
-  padding-bottom: 10px;
+  height: 45px;
+  padding: 10px;
   margin: 0;
   border-top: 1px solid #cecdd1;
   border-bottom: 1px none #cecdd1;
@@ -310,7 +309,13 @@ select {
   background-size: auto;
   background-repeat: no-repeat;
   -webkit-appearance: none;
+  height: 28px;
 }
+
+select[multiple], select[size] {
+  height: 28px;
+}
+
 textarea {
   width: 300px;
   height: 400px;
@@ -406,11 +411,13 @@ textarea {
 .check-ios:checked + label {
   left: 25px;
 }
+
+
 div {
-  margin:0 0 0.75em 0;
+  margin:0 0 0 0;
 }
 input[type="radio"] {
-  display:none;
+  /*display:none;*/
 }
 input[type="radio"] + label {
   color: #333;
