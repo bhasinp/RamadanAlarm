@@ -1,421 +1,157 @@
 <!DOCTYPE html>
-<!--
-    Copyright 2013-2014 appPlant UG
-
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
-
-     http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-    KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
--->
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="format-detection" content="telephone=no" />
-        <meta name="msapplication-tap-highlight" content="no" />
-        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-        <link rel="stylesheet" type="text/css" href="css/index.css" />
-        <title>Notification Example</title>
-    </head>
-    <body>
-        <div>
-            <div class="app">
-                <h1>Local-Notification Example</h1>
-                <div id="deviceready" class="blink">
-                    <p class="event listening">Connecting to Device</p>
-                    <p class="event received">Device is Ready</p>
-                </div>
-            </div>
+<head>
+	<title> Ramadan 2015 </title>
+	<link href="css/bootstrap.min.css" rel="stylesheet" />
+	<!-- Optional theme -->
 
-            <!-- permission -->
-            <h2 class="section" style="padding-top:180px;">Permission (iOS8)</h2>
-            <div class="container">
-                <div onclick="hasPermission()">Granted?<br /><span>hasPermission()</span></div>
-                <div onclick="registerPermission()">Register<br /><span>registerPermission()</span></div>
-            </div>
+	<!-- <link href="css/bootstrap-theme-io8.css" rel="stylesheet" /> -->
 
-            <!-- schedule -->
-            <h2 class="section">Schedule</h2>
-            <div class="container">
-                <div onclick="schedule()">Single<br /><span>schedule(1)</span></div>
-                <div onclick="scheduleMultiple()">Multiple<br /><span>schedule(1, 2, 3)</span></div>
-            </div>
-            <div class="container">
-                <div onclick="scheduleDelayed()">In 5 sec<br /><span>schedule(1, firstAt:later)</span></div>
-                <div onclick="scheduleMinutely()">Every min<br /><span>schedule(1, every:minute)</span></div>
-            </div>
+<link rel="stylesheet" href="css/clock.css" type="text/css"></link>
 
-            <!-- update -->
-            <h2 class="section">Update</h2>
-            <div class="container">
-                <div onclick="update()">Title<br /><span>update(1)</span></div>
-                <div onclick="updateInterval()">Interval<br /><span>update(1, every:minute)</span></div>
-            </div>
+	<!-- Ramadan references -->
+	<link href="css/index.css" rel="stylesheet" />
+	<style>
+		body, tr, form {font-family: tahoma; font-size: 12px; color: #fff; background-color: #012345; text-align: center;}
+		pre {font-family: courier, serif, size: 10pt; margin: 0px 8px;}
+		input {font-size: 12px;}
+		.header {background:#eef; border-bottom: 1px solid #ddd; padding: 7px;}
+		.caption {font-size: 20px; color: #d95722; text-align: center; width: 10em;}
+		.arrow {font-weight: bold; text-decoration: none; color: #3D3D3D; }
+		.arrow:hover {text-decoration: underline;}
+		.command {font-weight: bold; text-decoration: none; color: #AAAAAA; }
+		.command:hover {text-decoration: underline;}
+		.timetable {border-width: 1px; border-style: outset; border-collapse: collapse; border-color: gray; margin: 0 auto;}
+		.timetable td {border-width: 1px; border-spacing: 1px; padding: 1px; border-style: inset; border-color: #CCCCCC;}
+		.head-row {color: black; background-color: #eef;}
+		.today-row {background-color: #F8F7F4; color: black}
+		.subMenu {list-style: none;}
+		input, select { width: 100%;}
+		input[type=radio]{width:auto;}
+		.formOptions, .formOptions div {text-align: left;}
+		.formRow {margin-bottom: 5px;}
 
-            <!-- clear -->
-            <h2 class="section">Clear</h2>
-            <div class="container">
-                <div onclick="clearSingle()">Single<br /><span>clear(1)</span></div>
-                <div onclick="clearMultiple()">Multiple<br /><span>clear(2, 3)</span></div>
-            </div>
-            <div class="container">
-                <div onclick="clearAll()">All<br /><span>clearAll()</span></div>
-            </div>
+		.col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 {
+  position: relative;
+  min-height: 1px;
+  padding-right: 5px;
+  padding-left: 5px;
+}
 
-            <!-- cancel -->
-            <h2 class="section">Cancel</h2>
-            <div class="container">
-                <div onclick="cancel()">Single<br /><span>cancel(1)</span></div>
-                <div onclick="cancelMultiple()">Multiple<br /><span>cancel(2, 3)</span></div>
-            </div>
-            <div class="container">
-                <div onclick="cancelAll()">All<br /><span>cancelAll()</span></div>
-            </div>
 
-            <!-- presence -->
-            <h2 class="section">Presence</h2>
-            <div class="container">
-                <div onclick="isScheduled()">Scheduled?<br /><span>isScheduled(1)</span></div>
-                <div onclick="isTriggered()">Triggered?<br /><span>isTrigered(1)</span></div>
-            </div>
-            <div class="container">
-                <div onclick="isPresent()">Present?<br /><span>present(1)</span></div>
-            </div>
 
-            <!-- id's -->
-            <h2 class="section">ID's</h2>
-            <div class="container">
-                <div onclick="getScheduledIds()">Scheduled<br /><span>getScheduledIds()</span></div>
-                <div onclick="getTriggeredIds()">Triggered<br /><span>getTriggeredIds()</span></div>
-            </div>
-            <div class="container">
-                <div onclick="getIds()">All<br /><span>getIds()</span></div>
-            </div>
 
-            <!-- notifications -->
-            <h2 class="section">Notifications</h2>
-            <div class="container">
-                <div onclick="getScheduled()">Scheduled<br /><span>getScheduled()</span></div>
-                <div onclick="getTriggered()">Triggered<br /><span>getTrigered()</span></div>
-            </div>
-            <div class="container">
-                <div onclick="get()">Single<br /><span>get(1)</span></div>
-                <div onclick="getMultiple()">Multiple<br /><span>get(1, 2)</span></div>
-            </div>
-            <div class="container">
-                <div onclick="getAll()">All<br /><span>getAll()</span></div>
-            </div>
+	</style>
+		
+</head>
 
-            <!-- defaults -->
-            <h2 class="section">Defaults</h2>
-            <div class="container">
-                <div onclick="setDefaultTitle()">Change title<br /><span>setDefaults(title:"...")</span></div>
-            </div>
+<body>
 
-            <!-- copyright -->
-            <div class="copyright">
-                © 2013-2015 appPlant
-            </div>
-        </div>
+	
 
-        <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
+	<!-- Brand and toggle get grouped for better mobile display -->
+<!-- 	<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header navbar-right">
+				<button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="sr-only">Toggle Navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<div class="navbar-brand navbar-right"><a href="default.html">Home</a></div>
+			</div>
+			<div class="collapse navbar-collapse">
 
-        <script type="text/javascript">
-            var id = 1, dialog;
+				<ul class="subMenu">
+					<li><a href="#">Alarm</a></li>
+					<li><a href="#">Monthly Calendar</a></li>
+					<li class="divider"> </li>
+					<li><a href="#">Community Newsletter</a></li>
+				</ul>
 
-            callback = function () {
-                cordova.plugins.notification.local.getIds(function (ids) {
-                    showToast('IDs: ' + ids.join(' ,'));
-                });
-            };
 
-            showToast = function (text) {
-                setTimeout(function () {
-                    if (device.platform != 'windows') {
-                        window.plugins.toast.showShortBottom(text);
-                    } else {
-                        showDialog(text);
-                    }
-                }, 100);
-            };
+			</div>
+		</div>
+	</div> -->
 
-            showDialog = function (text) {
-                if (dialog) {
-                    dialog.content = text;
-                    return;
-                }
+	<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header ">
+				<div class="navbar-brand pull-left"><a href="default.html"></a></div>
+				<div class="navbar-brand pull-right"><a href="settings.html">Setting</a></div>
+			</div>
+		</div>
+	</div>
+		<div class="row">
+			<div class="col-md-12 col-sm-12 col-xs-12  timeMain">
+				
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12 col-sm-12 col-xs-12 clockMain">
+				<div id="cssclock"><div id="clockanalog" style="display:none;"><img src="img/analogseconds.png" id="analogsecond" alt="Clock second-hand" /><img src="img/analogminutes.png" id="analogminute" alt="Clock minute-hand" /><img src="img/analoghours.png" id="analoghour"  alt="Clock hour-hand" /></div>
+			</div>
+		</div>
 
-                dialog = new Windows.UI.Popups.MessageDialog(text);
+		<div class="row">
+			<div class="pull-left sahoorTime">Sahoor<br><div class="stime"></div> </div>
+			<div class="pull-right iftarTime">Iftar<br><div class="itime"></div></div>
+		</div>
+		<div class="row">
+			<div class="col-md-12 col-sm-12 col-xs-12" style="text-align:center;">
+				<span style="font-size:12pt;">HomeLife/Miracle Realty Ltd. Brokerage</span><br>
+				<strong>Syed Mehdi</strong><br>
+				<a href="www.gtaproperty4sale.com">www.gtaproperty4sale.com</a><br>
+				<a href="mailto:cozyhomes123@gmail.com">cozyhomes123@gmail.com</a><br>
+				<a href="tel:647-232-5544">647-232-5544</a>
+			</div>	
+		</div>
+		
+			
 
-                dialog.showAsync().done(function () {
-                    dialog = null;
-                });
-            };
+<!-- Latest compiled and minified JavaScript -->
+<script src="cordova.js"></script>
 
-        </script>
+<script src="js/jquery-1.11.3.min.js"></script>
+<script src="js/bootstrap.js"></script>
 
-        <!-- permission -->
-        <script type="text/javascript">
-            hasPermission = function () {
-                cordova.plugins.notification.local.hasPermission(function (granted) {
-                    showToast(granted ? 'Yes' : 'No');
-                });
-            };
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
+<script type="text/javascript" src="js/clock.js"></script>
+<script type="text/javascript" src="js/PrayTimes.js"></script>
+<script src="js/prayerMonth.js"></script>
+<script src="js/notification.js"></script>
 
-            registerPermission = function () {
-                cordova.plugins.notification.local.registerPermission(function (granted) {
-                    showToast(granted ? 'Yes' : 'No');
-                });
-            };
-        </script>
+<script>
+	document.addEventListener('deviceready', function(){
+		bDOMLoaded = true;
+    	ClockInit();
 
-        <!-- schedule -->
-        <script type="text/javascript">
-            schedule = function () {
-                cordova.plugins.notification.local.schedule({
-                    id: 1,
-                    text: 'Test Message 1',
-                    icon: 'http://www.optimizeordie.de/wp-content/plugins/social-media-widget/images/default/64/googleplus.png',
-                    sound: null,
-                    data: { test: id }
-                });
-            };
+    	var _lat = window.localStorage.getItem("latitude");
+		var _lng = window.localStorage.getItem("longitude");
+		var _zip = window.localStorage.getItem("zip");
+		var _dst = window.localStorage.getItem("dst");
+		var _timezone = window.localStorage.getItem("timezone");
+		var _method = window.localStorage.getItem("method");
+		var _type = window.localStorage.getItem("type");
+		var _format = '12hNS';//'24h'
+		var prayTimes = new PrayTimes(_method);
+		var times = prayTimes.getTimes(new Date(), [_lat, _lng], _timezone, _dst, _format);
+		console.log(times);
+		$(".timeMain").text(new Date().toLocaleDateString("en-US",{
+								    weekday: "long", year: "numeric", month: "short",
+								    day: "numeric"
+								}));
+		$('.stime').html(times.fajr + " AM");
+		$('.itime').html(times.maghrib + " PM");
+		notification.scheduleDelayedMultiple();
+	}, false);
 
-            scheduleMultiple = function () {
-                cordova.plugins.notification.local.schedule([{
-                    id: 1,
-                    text: 'Multi Message 1'
-                }, {
-                    id: 2,
-                    text: 'Multi Message 2'
-                }, {
-                    id: 3,
-                    text: 'Multi Message 3'
-                }]);
-            };
 
-            scheduleDelayed = function () {
-                var now = new Date().getTime(),
-                    _5_sec_from_now = new Date(now + 5 * 1000);
+</script>
 
-                var sound = device.platform == 'Android' ? 'file://sound.mp3' : 'file://beep.caf';
-
-                cordova.plugins.notification.local.schedule({
-                    id: 1,
-                    title: 'Scheduled with delay',
-                    text: 'Test Message 1',
-                    at: _5_sec_from_now,
-                    sound: sound,
-                    badge: 12
-                });
-            };
-
-            scheduleMinutely = function () {
-                var sound = device.platform == 'Android' ? 'file://sound.mp3' : 'file://beep.caf';
-
-                cordova.plugins.notification.local.schedule({
-                    id: 1,
-                    text: 'Scheduled every minute',
-                    every: 'minute',
-                    sound: sound
-                });
-            };
-        </script>
-
-        <!-- update -->
-        <script type="text/javascript">
-            update = function () {
-                cordova.plugins.notification.local.update({
-                    id: 1,
-                    text: 'Updated Message 1',
-                    json: { updated: true }
-                });
-            };
-
-            updateInterval = function () {
-                cordova.plugins.notification.local.update({
-                    id: 1,
-                    text: 'Updated Message 1',
-                    every: 'minute'
-                });
-            };
-        </script>
-
-        <!-- clear -->
-        <script type="text/javascript">
-            clearSingle = function () {
-                cordova.plugins.notification.local.clear(1, callback);
-            };
-
-            clearMultiple = function () {
-                cordova.plugins.notification.local.clear([2, 3], callback);
-            };
-
-            clearAll = function () {
-                cordova.plugins.notification.local.clearAll(callback);
-            };
-        </script>
-
-        <!-- cancel -->
-        <script type="text/javascript">
-            cancel = function () {
-                cordova.plugins.notification.local.cancel(1, callback);
-            };
-
-            cancelMultiple = function () {
-                cordova.plugins.notification.local.cancel([2, 3], callback);
-            };
-
-            cancelAll = function () {
-                cordova.plugins.notification.local.cancelAll(callback);
-            };
-        </script>
-
-        <!-- presence -->
-        <script type="text/javascript">
-            isPresent = function () {
-                cordova.plugins.notification.local.isPresent(id, function (present) {
-                    showToast(present ? 'Yes' : 'No');
-                });
-            };
-
-            isScheduled = function () {
-                cordova.plugins.notification.local.isScheduled(id, function (scheduled) {
-                    showToast(scheduled ? 'Yes' : 'No');
-                });
-            };
-
-            isTriggered = function () {
-                cordova.plugins.notification.local.isTriggered(id, function (triggered) {
-                    showToast(triggered ? 'Yes' : 'No');
-                });
-            };
-        </script>
-
-        <!-- IDs -->
-        <script type="text/javascript">
-            var callbackIds = function (ids) {
-                console.log(ids);
-                showToast(ids.length === 0 ? '- none -' : ids.join(' ,'));
-            };
-
-            getIds = function () {
-                cordova.plugins.notification.local.getIds(callbackIds);
-            };
-
-            getScheduledIds = function () {
-                cordova.plugins.notification.local.getScheduledIds(callbackIds);
-            };
-
-            getTriggeredIds = function () {
-                cordova.plugins.notification.local.getTriggeredIds(callbackIds);
-            };
-        </script>
-
-        <!-- notifications -->
-        <script type="text/javascript">
-            var callbackOpts = function (notifications) {
-                console.log(notifications);
-                showToast(notifications.length === 0 ? '- none -' : notifications.join(' ,'));
-            };
-
-            var callbackSingleOpts = function (notification) {
-                console.log(notification);
-                showToast(notification.toString());
-            };
-
-            get = function () {
-                cordova.plugins.notification.local.get(1, callbackSingleOpts);
-            };
-
-            getMultiple = function () {
-                cordova.plugins.notification.local.get([1, 2], callbackOpts);
-            };
-
-            getAll = function () {
-                cordova.plugins.notification.local.getAll(callbackOpts);
-            };
-
-            getScheduled = function () {
-                cordova.plugins.notification.local.getScheduled(callbackOpts);
-            };
-
-            getTriggered = function () {
-                cordova.plugins.notification.local.getTriggered(callbackOpts);
-            };
-        </script>
-
-        <!-- defaults -->
-        <script type="text/javascript">
-            setDefaultTitle = function () {
-                cordova.plugins.notification.local.setDefaults({
-                    title: 'New Default Title'
-                });
-            };
-        </script>
-
-        <!-- callbacks -->
-        <script type="text/javascript">
-            document.addEventListener('deviceready', function () {
-
-                cordova.plugins.notification.local.on('schedule', function (notification) {
-                    console.log('onschedule', arguments);
-                    // showToast('scheduled: ' + notification.id);
-                });
-
-                cordova.plugins.notification.local.on('update', function (notification) {
-                    console.log('onupdate', arguments);
-                    // showToast('updated: ' + notification.id);
-                });
-
-                cordova.plugins.notification.local.on('trigger', function (notification) {
-                    console.log('ontrigger', arguments);
-                    showToast('triggered: ' + notification.id);
-                });
-
-                cordova.plugins.notification.local.on('click', function (notification) {
-                    console.log('onclick', arguments);
-                    showToast('clicked: ' + notification.id);
-                });
-
-                cordova.plugins.notification.local.on('cancel', function (notification) {
-                    console.log('oncancel', arguments);
-                    // showToast('canceled: ' + notification.id);
-                });
-
-                cordova.plugins.notification.local.on('clear', function (notification) {
-                    console.log('onclear', arguments);
-                    showToast('cleared: ' + notification.id);
-                });
-
-                cordova.plugins.notification.local.on('cancelall', function () {
-                    console.log('oncancelall', arguments);
-                    // showToast('canceled all');
-                });
-
-                cordova.plugins.notification.local.on('clearall', function () {
-                    console.log('onclearall', arguments);
-                    // showToast('cleared all');
-                });
-            }, false);
-        </script>
-
-        <!-- initialize -->
-        <script type="text/javascript">
-            app.initialize();
-        </script>
-    </body>
+</body>
 </html>
+
+
+
