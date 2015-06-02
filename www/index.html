@@ -127,24 +127,24 @@
 		bDOMLoaded = true;
     	ClockInit();
 
-    	var _lat = window.localStorage.getItem("latitude");
-		var _lng = window.localStorage.getItem("longitude");
-		var _zip = window.localStorage.getItem("zip");
-		var _dst = window.localStorage.getItem("dst");
-		var _timezone = window.localStorage.getItem("timezone");
-		var _method = window.localStorage.getItem("method");
-		var _type = window.localStorage.getItem("type");
-		var _format = '12hNS';//'24h'
-		var prayTimes = new PrayTimes(_method);
-		var times = prayTimes.getTimes(new Date(), [_lat, _lng], _timezone, _dst, _format);
-		console.log(times);
-		$(".timeMain").text(new Date().toLocaleDateString("en-US",{
-								    weekday: "long", year: "numeric", month: "short",
-								    day: "numeric"
-								}));
-		$('.stime').html(times.fajr + " AM");
-		$('.itime').html(times.maghrib + " PM");
-		notification.scheduleDelayedMultiple();
+  //   	var _lat = window.localStorage.getItem("latitude");
+		// var _lng = window.localStorage.getItem("longitude");
+		// var _zip = window.localStorage.getItem("zip");
+		// var _dst = window.localStorage.getItem("dst");
+		// var _timezone = window.localStorage.getItem("timezone");
+		// var _method = window.localStorage.getItem("method");
+		// var _type = window.localStorage.getItem("type");
+		// var _format = '12hNS';//'24h'
+		// var prayTimes = new PrayTimes(_method);
+		// var times = prayTimes.getTimes(new Date(), [_lat, _lng], _timezone, _dst, _format);
+		// console.log(times);
+		// $(".timeMain").text(new Date().toLocaleDateString("en-US",{
+		// 						    weekday: "long", year: "numeric", month: "short",
+		// 						    day: "numeric"
+		// 						}));
+		// $('.stime').html(times.fajr + " AM");
+		// $('.itime').html(times.maghrib + " PM");
+		// notification.scheduleDelayedMultiple();
 	}, false);
 
 

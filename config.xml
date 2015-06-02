@@ -7,7 +7,7 @@
     <author email="into@initto.ca" href="http://www.initto.ca">
         Initto IT Consulting Inc.
     </author>
-    <content src="index.html" />
+    <content src="main.html" />
     <access origin="*" />
     <feature name="Geolocation">
         <param name="ios-package" value="CDVLocation" />
