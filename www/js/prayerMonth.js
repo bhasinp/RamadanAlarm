@@ -2,7 +2,54 @@ var currentDate = new Date();
 var timeFormat = 1; 
 //switchFormat(0);
 
+function saveAndBack(){
+	saveSettings();
+	window.location.href="index.html";
+
+}
+
+function saveAndCalendar(){
+	saveSettings();
+	window.location.href="calendar.html";
+
+}
+
+
+function setalarm(){
+	//notification.showToast("hello there");
+	//notification.get(12);
+        //notification.getTriggered();
+        saveSettings();
+	window.location.href="setschedule.html";
+}
+
+function getLocation(){
+	navigator.geolocation.getCurrentPosition(function(position){
+			if (position != null){
+				document.getElementById("latitude").value = position.coords.latitude;
+				document.getElementById("longitude").value = position.coords.longitude;
+				
+
+				// var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+				// var geocoder = new google.maps.Geocoder();
+				// geocoder.geocode({'latLng': pos}, function(results, status){
+				// 	if (results[1]){
+				// 		document.getElementById("city").innerText = "City: " + results[1].formatted_address;
+				// 	}
+				// 	else{
+				// 		document.getElementById("city").innerText = "Error finding city";
+				// 	}
+				// })
+				updateToday();
+				//update(false, false);
+			}
+		}, function(err){alert("error!!!")},{timeout:10000, enableHighAccuracy: true, maximumAge:75000}
+        );
+
+}
+
 function saveSettings(){
+	if ($('#latitude').length > 0){
 	var _lat = $('#latitude').val();
 	var _lng = $('#longitude').val();
 	var _zip = $('#zip').val();
@@ -18,6 +65,7 @@ function saveSettings(){
 	window.localStorage.setItem("timezone",_timeZone);
 	window.localStorage.setItem("method",_method);
 	window.localStorage.setItem("type",_type);
+	}
 }
 
 function fetchSettings()
