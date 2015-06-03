@@ -273,8 +273,8 @@ function getLocation(){
 				// 		document.getElementById("city").innerText = "Error finding city";
 				// 	}
 				// })
-
-				update(false, false);
+				updateToday();
+				//update(false, false);
 			}
 		}, function(err){alert("error!!!")},{timeout:10000, enableHighAccuracy: true, maximumAge:75000}
         );
