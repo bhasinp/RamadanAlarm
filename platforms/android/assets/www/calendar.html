@@ -64,51 +64,57 @@
 
 <script src="js/prayerMonth.js"></script>
 <script src="js/notification.js"></script>
-
+<script src="js/app.js"></script>
 <script>
 
-function saveAndBack(){
-	saveSettings();
-	window.location.href="default.html";
+// function saveAndBack(){
+// 	saveSettings();
+// 	window.location.href="default.html";
 
-}
-function setalarm(){
-	//notification.showToast("hello there");
-	notification.get(12);
-        //notification.getTriggered();
-}
+// }
+// function setalarm(){
+// 	//notification.showToast("hello there");
+// 	notification.get(12);
+//         //notification.getTriggered();
+// }
 
-function getLocation(){
-	navigator.geolocation.getCurrentPosition(function(position){
-			if (position != null){
-				document.getElementById("latitude").value = position.coords.latitude;
-				document.getElementById("longitude").value = position.coords.longitude;
+// function getLocation(){
+// 	navigator.geolocation.getCurrentPosition(function(position){
+// 			if (position != null){
+// 				document.getElementById("latitude").value = position.coords.latitude;
+// 				document.getElementById("longitude").value = position.coords.longitude;
 				
 
-				// var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-				// var geocoder = new google.maps.Geocoder();
-				// geocoder.geocode({'latLng': pos}, function(results, status){
-				// 	if (results[1]){
-				// 		document.getElementById("city").innerText = "City: " + results[1].formatted_address;
-				// 	}
-				// 	else{
-				// 		document.getElementById("city").innerText = "Error finding city";
-				// 	}
-				// })
+// 				// var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+// 				// var geocoder = new google.maps.Geocoder();
+// 				// geocoder.geocode({'latLng': pos}, function(results, status){
+// 				// 	if (results[1]){
+// 				// 		document.getElementById("city").innerText = "City: " + results[1].formatted_address;
+// 				// 	}
+// 				// 	else{
+// 				// 		document.getElementById("city").innerText = "Error finding city";
+// 				// 	}
+// 				// })
 
-				update();
-			}
-		}, function(err){alert("error!!!")},{timeout:10000, enableHighAccuracy: true, maximumAge:75000}
-        );
+// 				update();
+// 			}
+// 		}, function(err){alert("error!!!")},{timeout:10000, enableHighAccuracy: true, maximumAge:75000}
+//         );
 
-}
+// }
 	document.addEventListener('deviceready', function(){
-		fetchSettings();
+		//fetchSettings();
 		update(true, true);
 
 		// notification.scheduleDelayedMultiple();
   //       notification.getIds();
 	}, false);
+
+
+	$(document).ready(function(){
+		//fetchSettings();
+		update(true, true);
+	});
 
 
 </script>

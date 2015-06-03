@@ -11,7 +11,7 @@
   	text-align: center;
   	margin-top:20px;
   }
-  .sahoorTime, .iftarTime{margin:20px; text-align: center; line-height: 2em; font-size:1.3em; width:auto;}
+  .sahoorTime, .iftarTime{margin:20px; text-align: center; line-height: 2em; font-size:1.3em; width:auto; min-width:80px;}
 #clockanalog { background: #012345 url("../img/analog.gif") no-repeat 0 0; float: left; height: 150px; margin: 0; overflow: hidden; position: relative; width: 150px; }
 #clockanalog img { border: 0; left: 0px; position: absolute; top: 0px; }
 #clockdigital { background: #012345 url("../img/digital.gif") no-repeat 162px 99px; float: right; height: 150px; margin: 0; overflow: hidden; padding: 0; position: relative; width: 485px; }
