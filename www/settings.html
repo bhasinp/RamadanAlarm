@@ -32,7 +32,7 @@
 		</div>
 	</div>
 		<div class="header contentBody">
-			<form class="form" action="javascript:update();">
+			<form class="form" action="javascript:updateToday();">
 				
 				<div class="row">
 					<div class="col-md-3 col-sm-6 col-xs-6">
@@ -47,7 +47,7 @@
 							<div class="col-md-6 col-sm-6 col-xs-6 formLabel">DST:</div>
 							<div class="col-md-6 col-sm-6 col-xs-6">
 
-								<select id="dst" size="1" style="font-size: 12px;" onchange="update()">
+								<select id="dst" size="1" style="font-size: 12px;" onchange="updateToday()">
 									<option value="auto" selected="selected">Auto</option>
 									<option value="0">0</option>
 									<option value="1">1</option>
@@ -59,12 +59,12 @@
 					<div class="col-md-3 col-sm-6 col-xs-6 formRow">
 						<div class="col-md-6 col-sm-6 col-xs-6 formLabel">Latitude:</div>
 						<div class="col-md-6 col-sm-6 col-xs-6">
-							<input type="text" value="" id="latitude" size="2" onchange="update();" />
+							<input type="text" value="" id="latitude" size="2" onchange="updateToday();" />
 						</div></div>
 						<div class="col-md-3 col-sm-6 col-xs-6 formRow">
 							<div class="col-md-6 col-sm-6 col-xs-6 formLabel">Longitude:</div>
 							<div class="col-md-6 col-sm-6 col-xs-6">
-								<input type="text" value="" id="longitude" size="2" onchange="update();" />
+								<input type="text" value="" id="longitude" size="2" onchange="updateToday();" />
 							</div>
 						</div>
 						
@@ -74,7 +74,7 @@
 						<div class="col-md-3 col-sm-3 col-xs-3 formLabel">Time zone:</div>
 							<div class="col-md-9 col-sm-9 col-xs-9">
 
-								<select id="timezone" onchange="update();">
+								<select id="timezone" onchange="updateToday();">
 									<option timeZoneId="1" gmtAdjustment="GMT-12:00" useDaylightTime="0" value="-12">(GMT-12:00) International Date Line West</option>
 									<option timeZoneId="2" gmtAdjustment="GMT-11:00" useDaylightTime="0" value="-11">(GMT-11:00) Midway Island, Samoa</option>
 									<option timeZoneId="3" gmtAdjustment="GMT-10:00" useDaylightTime="0" value="-10">(GMT-10:00) Hawaii</option>
@@ -167,7 +167,7 @@
 						<div class="col-md-3 col-sm-3 col-xs-3 formLabel">Method:</div>
 							<div class="col-md-9 col-sm-9 col-xs-9">
 
-								<select id="method" size="1" onchange="update()">
+								<select id="method" size="1" onchange="updateToday()">
 									<option value="MWL" selected="selected">Muslim World League (MWL)</option>
 									<option value="ISNA">Islamic Society of North America (ISNA)</option>
 									<option value="Egypt">Egyptian General Authority of Survey</option>
@@ -184,13 +184,18 @@
 						<div class="col-md-3 col-sm-3 col-xs-3 formLabel">Type:</div>
 							<div class="col-md-9 col-sm-9 col-xs-9">
 
-								<input type="radio" name="type" id="t1" value="1" onchange="update()"> Shia &nbsp; &nbsp; 
-								<input type="radio" name="type" id="t1" value="2" onchange="update()"> Sunni
+								<input type="radio" name="type" id="t1" value="1" onchange="updateToday()"> Shia &nbsp; &nbsp; 
+								<input type="radio" name="type" id="t1" value="2" onchange="updateToday()"> Sunni
 							</div>
 						</div>
 					</div>
 
 				</form>
+			</div>
+			 <div class="row">
+				<div class="pull-right">
+					<a id="schedule" class="btn btn-success" href="setschedule.html">Set Alarm</a>
+				</div>
 			</div>
 			<!-- <div class="row">
 				<div class="pull-left">
@@ -202,10 +207,13 @@
 				</div>
 			</div>-->
 			<br/> 
-			<div id="city">City:</div>
-
+			<div id="city">City:</div><br>
+			<table id="todaytable" class="timetable">
+				<tbody></tbody>
+			</table>
 			<br/>
-			<table align="center">
+
+			<!-- <table align="center">
 				<tr>
 					<td><a href="javascript:displayMonth(-1)" class="arrow">&lt;&lt;</a></td>
 					<td id="table-title" class="caption"></td>
@@ -222,7 +230,7 @@
 				Source: <a href="http://praytimes.org/" class="command">PrayTimes.org</a> |
 				Time Format: <a id="time-format" href="javascript:switchFormat(1)" title="Change clock format" class="command"></a>
 			</div>
-			<br/>
+			<br/> -->
 
 			
 

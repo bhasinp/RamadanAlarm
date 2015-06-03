@@ -12,33 +12,6 @@
 
 	<!-- Ramadan references -->
 	<link href="css/index.css" rel="stylesheet" />
-	<style>
-		body, tr, form {font-family: tahoma; font-size: 12px; color: #404040; text-align: center;}
-		pre {font-family: courier, serif, size: 10pt; margin: 0px 8px;}
-		input {font-size: 12px;}
-		.header {background:#eef; border-bottom: 1px solid #ddd; padding: 7px;}
-		.caption {font-size: 20px; color: #d95722; text-align: center; width: 10em;}
-		.arrow {font-weight: bold; text-decoration: none; color: #3D3D3D; }
-		.arrow:hover {text-decoration: underline;}
-		.command {font-weight: bold; text-decoration: none; color: #AAAAAA; }
-		.command:hover {text-decoration: underline;}
-		.timetable {border-width: 1px; border-style: outset; border-collapse: collapse; border-color: gray; margin: 0 auto;}
-		.timetable td {border-width: 1px; border-spacing: 1px; padding: 1px; border-style: inset; border-color: #CCCCCC;}
-		.head-row {color: black; background-color: #eef;}
-		.today-row {background-color: #F8F7F4; color: black}
-		.subMenu {list-style: none;}
-		input, select { width: 100%;}
-		input[type=radio]{width:auto;}
-		.formOptions, .formOptions div {text-align: left;}
-		.formRow {margin-bottom: 5px;}
-
-		.col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 {
-  position: relative;
-  min-height: 1px;
-  padding-right: 5px;
-  padding-left: 5px;
-}
-	</style>
 </head>
 
 <body>
@@ -48,30 +21,19 @@
 	<!-- Brand and toggle get grouped for better mobile display -->
 	<div class="navbar navbar-default navbar-fixed-top" role="navigation">
 		<div class="container-fluid">
-			<div class="navbar-header navbar-right">
-				<button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-					<span class="sr-only">Toggle Navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<div class="navbar-brand navbar-right"><a href="default.html">Home</a></div>
-			</div>
-			<div class="collapse navbar-collapse">
-
-				<ul class="subMenu">
-					<li><a href="#">Alarm</a></li>
-					<li><a href="#">Monthly Calendar</a></li>
-					<li class="divider"> </li>
-					<li><a href="#">Community Newsletter</a></li>
-				</ul>
-
-
+			<div class="navbar-header ">
+				<div class="navbar-brand pull-left"><a href="javascript:saveAndBack();">Back</a></div>
+				<div class="navbar-brand pull-right"><a href="javascript:saveAndCalendar();">Ramdan Calendar</a></div>
 			</div>
 		</div>
-		</div>
+	</div>
 		<div class="header contentBody">
 			Schedule Alarms here...
+			<br>
+			<br>
+			<table id="timetable" class="timetable">
+				<tbody></tbody>
+			</table>
 		</div>
 
 			
@@ -80,7 +42,7 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="js/bootstrap.js"></script>
 <script src="cordova.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
+<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBRp14Q-8MP698RmK6QW7VbHzpheI6Q0PA"></script>
 
 <script src="js/prayerMonth.js"></script>
 <script src="js/notification.js"></script>
@@ -90,6 +52,9 @@
 		notification.get(12);
 	}, false);
 
+	$(document).ready(function(){
+		update(true, true);
+	});
 
 </script>
 

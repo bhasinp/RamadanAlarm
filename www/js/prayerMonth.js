@@ -123,20 +123,31 @@ function fetchSettings()
 	}
 
 	function makeRamadanTable(year, month, lat, lng, timeZone, dst){
-		var items = {day: 'Day', fajr: 'Fajr', sunrise: 'Sunrise', 
-					dhuhr: 'Dhuhr', asr: 'Asr', // sunset: 'Sunset', 
-					maghrib: 'Maghrib', isha: 'Isha'};
+		// var items = {day: 'Day', fajr: 'Fajr', sunrise: 'Sunrise', 
+		// 			dhuhr: 'Dhuhr', asr: 'Asr', // sunset: 'Sunset', 
+		// 			maghrib: 'Maghrib', isha: 'Isha'};
+		var _type = window.localStorage.getItem("type");
+		var items = {day: 'Day', presahoor:'Pre Sahoor', sahoor:'Sahoor',fajr: 'Fajr', 
+					maghrib: 'Maghrib /Iftar'};
 
 					var tbody = document.createElement('tbody');
 					tbody.appendChild(makeTableRow(items, items, 'head-row'));
 
-					var date = new Date(year, month, 18);
-					var endDate = new Date(year, month+ 1, 17);
+					var date = new Date(year, month, 16);
+					var endDate = new Date(year, month+ 1, 18);
 					var format = timeFormat ? '12hNS' : '24h';
 
 					while (date < endDate) {
 						var times = prayTimes.getTimes(date, [lat, lng], timeZone, dst, format);
 						times.day = monthShortName(date.getMonth())+ "-" + date.getDate();
+
+						if (_type == "1")
+							times.sahoor = subtractTime(times.fajr, 10);
+						else
+							times.sahoor = times.fajr;
+
+						times.presahoor = subtractTime(times.sahoor, 10);
+
 						var today = new Date(); 
 						var isToday = (date.getMonth() == today.getMonth()) && (date.getDate() == today.getDate());
 						var klass = isToday ? 'today-row' : '';
@@ -229,7 +240,11 @@ function fetchSettings()
 		}
 
 		
+		updateCityZip(lat, lng);
+		
+	}
 
+	function updateCityZip(lat, lng){
 		if (lat != undefined && lng != undefined){
 			var pos = new google.maps.LatLng(lat, lng);
 			var geocoder = new google.maps.Geocoder();
@@ -248,7 +263,67 @@ function fetchSettings()
 				}
 			})
 		}
+	}
+
+	function subtractTime(time, subtract){
+		var t = time.split(':');
+		if (t[1] < subtract){
+			var s = subtract - parseInt(t[1]);
+			var left = 60-s;
+			return (parseInt(t[0])-1) + ":"+ left;
+		}
+		else{
+			var mins =(parseInt(t[1])- subtract);
+			return t[0] + ":" + (mins>10?mins:'0'+mins);
+		}
+	}
+	function updateToday(){
+		saveSettings();
+		var lat = window.localStorage.getItem("latitude");
+		var lng = window.localStorage.getItem("longitude");
+		var _method = window.localStorage.getItem("method");
+		var _timezone = window.localStorage.getItem("timezone");
+		var _dst = window.localStorage.getItem("dst");
+		var _type = window.localStorage.getItem("type");
+
+		if (_method != null)
+			prayTimes = new PrayTimes(_method);
+
+
+		if (lat != undefined && lng != undefined){
+			var items = {day: 'Date', sahoor: 'Sahoor', fajr: 'Fajr', sunrise: 'Sunrise', 
+					dhuhr: 'Dhuhr', asr: 'Asr', // sunset: 'Sunset', 
+					maghrib: 'Maghrib/ Iftar', isha: 'Isha'};
+
+		var tbody = document.createElement('tbody');
+		tbody.appendChild(makeTableRow(items, items, 'head-row'));
+
 		
+		var format = timeFormat ? '12hNS' : '24h';
+
+		var times = prayTimes.getTimes(new Date(), [lat, lng], _timezone, _dst, format);
+			times.day = new Date().toLocaleDateString("en-US",{
+								     year: "numeric", month: "short",
+								    day: "numeric"
+								});
+			if (_type == "1")
+				times.sahoor = subtractTime(times.fajr, 10);
+			else
+				times.sahoor = times.fajr;
+
+			tbody.appendChild(makeTableRow(times, items, "klass"));
+		removeAllChild($('#todaytable'));
+		if ($("#todaytable")!= null)
+			$('#todaytable').append(tbody);
+		else
+			$('todaytable').appendChild(tbody);
+		}
+		//update todaytable
+
+		updateCityZip(lat, lng);
+
+		
+
 	}
 
 	function updateByZip(){
@@ -275,7 +350,7 @@ function fetchSettings()
 					if (results.length > 0 && results[0].geometry != null){
 						document.getElementById("latitude").value = results[0].geometry.location.A;
 						document.getElementById("longitude").value = results[0].geometry.location.F;
-						update();
+						updateToday();
 					}
 				});
 	}
