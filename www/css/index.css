@@ -155,7 +155,7 @@ h1 {
 /****************************************************************************************************************************************************/
 /******************************************** Custom Override ***************************************************************************************/
 
-body, tr, form {font-family: tahoma; font-size: 12px; color: #012345; text-align: center;background: url('img/bg-tile.jpg')}
+body, tr, form {font-family: tahoma; font-size: 12px; color: #fff; background-color: #012345; text-align: center; background: url('../img/bg-tile.jpg')}
         pre {font-family: courier, serif, size: 10pt; margin: 0px 8px;}
         input,select {font-size: 10px;}
         .header {background:#eef; border-bottom: 1px solid #ddd; padding: 7px;}
@@ -200,7 +200,10 @@ body, tr, form {font-family: tahoma; font-size: 12px; color: #012345; text-align
     font-size: 13px;
 }
 
-
+a {
+  color: #FFFFFF;
+  text-decoration: none;
+}
 
 /*.container {
     display: -webkit-flex;
