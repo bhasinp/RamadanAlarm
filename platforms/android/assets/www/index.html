@@ -2,6 +2,7 @@
 <html>
 <head>
 	<title> Ramadan 2015 </title>
+
 	<link href="css/bootstrap.min.css" rel="stylesheet" />
 	<!-- Optional theme -->
 
@@ -11,7 +12,10 @@
 
 	<!-- Ramadan references -->
 	<link href="css/index.css" rel="stylesheet" />
-	
+	<style type="text/css">
+	        body, tr, form {font-family: tahoma; font-size: 12px; color: #fff; background-color: #012345; text-align: center;}
+
+</style>
 		
 </head>
 
@@ -88,9 +92,11 @@
 
 
 <script>
-	document.addEventListener('deviceready', function(){
-		// bDOMLoaded = true;
-  //   	ClockInit();
+	$(document).ready(function(){
+
+		//document.addEventListener('deviceready', function(){
+		bDOMLoaded = true;
+    	ClockInit();
 
     	var _lat = window.localStorage.getItem("latitude");
 		var _lng = window.localStorage.getItem("longitude");
@@ -110,13 +116,15 @@
 		$('.stime').html(times.fajr + " AM");
 		$('.itime').html(times.maghrib + " PM");
 		notification.scheduleDelayedMultiple();
-	}, false);
+	//}, false);
+
+	})
 
 
 </script>
 
 
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
+<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBRp14Q-8MP698RmK6QW7VbHzpheI6Q0PA"></script>
 <script type="text/javascript" src="js/clock.js"></script>
 <script type="text/javascript" src="js/PrayTimes.js"></script>
 <script src="js/prayerMonth.js"></script>

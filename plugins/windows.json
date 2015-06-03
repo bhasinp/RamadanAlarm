@@ -32,6 +32,9 @@
         },
         "org.apache.cordova.geolocation": {
             "PACKAGE_NAME": "NotificationExample"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "NotificationExample"
         }
     },
     "dependent_plugins": {

@@ -36,6 +36,11 @@ module.exports = [
         ]
     },
     {
+        "file": "plugins/cordova-plugin-whitelist/whitelist.js",
+        "id": "cordova-plugin-whitelist.whitelist",
+        "runs": true
+    },
+    {
         "file": "plugins/org.apache.cordova.device/www/device.js",
         "id": "org.apache.cordova.device.device",
         "clobbers": [
@@ -50,6 +55,7 @@ module.exports.metadata =
     "de.appplant.cordova.plugin.local-notification": "0.8.2dev",
     "org.apache.cordova.geolocation": "0.3.12",
     "de.appplant.cordova.common.registerusernotificationsettings": "1.0.1",
+    "cordova-plugin-whitelist": "1.0.0",
     "org.apache.cordova.device": "0.3.0",
     "android.support.v4": "21.0.1"
 }

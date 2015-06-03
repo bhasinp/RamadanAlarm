@@ -2,6 +2,7 @@
 <html>
 <head>
 	<title> Ramadan 2015 </title>
+
 	<link href="css/bootstrap.min.css" rel="stylesheet" />
 	<!-- Optional theme -->
 
@@ -91,7 +92,9 @@
 
 
 <script>
-	document.addEventListener('deviceready', function(){
+	$(document).ready(function(){
+
+		//document.addEventListener('deviceready', function(){
 		bDOMLoaded = true;
     	ClockInit();
 
@@ -113,13 +116,15 @@
 		$('.stime').html(times.fajr + " AM");
 		$('.itime').html(times.maghrib + " PM");
 		notification.scheduleDelayedMultiple();
-	}, false);
+	//}, false);
+
+	})
 
 
 </script>
 
 
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
+<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBRp14Q-8MP698RmK6QW7VbHzpheI6Q0PA"></script>
 <script type="text/javascript" src="js/clock.js"></script>
 <script type="text/javascript" src="js/PrayTimes.js"></script>
 <script src="js/prayerMonth.js"></script>
