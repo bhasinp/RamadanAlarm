@@ -7,7 +7,7 @@
     <author email="into@initto.ca" href="http://www.initto.ca">
         Initto IT Consulting Inc.
     </author>
-    <content src="index.html" />
+    <content src="default.html" />
     <engine name="android" spec="^4.0.2" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
